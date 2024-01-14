@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,6 +8,7 @@
 }
 
 body {
+    font-family: "Montserrat";
     height: 100vh;
     background-color: #eeeeff;
     
@@ -39,6 +41,15 @@ main {
     
 }
 
+form header{
+    margin-bottom: 30px;
+}
+
+form header p{
+    margin-left: 8px;
+}
+
+
 .img-container{
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     height: 60vh;
@@ -52,8 +63,81 @@ main {
     
 }
 
+input[type='text']
+{
 
-@media (max-width: 970px) {
+    width: 220px;
+    margin: 10px;
+    color: rgb(36, 35, 42);
+    font-size: 16px;
+    line-height: 20px;
+    min-height: 28px;
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: 2px solid black;
+    box-shadow: rgb(0 0 0 / 12%) 0px 1px 3px, rgb(0 0 0 / 24%) 0px 1px 2px;
+    background: rgb(251, 251, 251);
+    transition: all 0.1s ease 0s;
+    :focus{
+        border: 2px solid rgb(124, 138, 255);
+    }
+
+}
+
+button{
+    
+    width: 110px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: #282d7f;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 70px;
+
+}
+
+.login-btn{
+    margin-left: 25px;
+}
+
+.signup-btn{
+
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 4px;
+    padding: 8px;
+    
+    font-weight: 600;
+    color: #282d7f;
+    border: 1px solid #282d7f;
+    
+
+}
+
+
+
+i{
+    font-size: 20px;
+}
+
+button:hover{
+    background-color: #000000;
+    color: white;
+}
+
+@media (max-width: 1058px) {
+    .container{
+        width: 350px;
+        height: 400px;
+        min-width: 300px;
+    }
     .img{
         display: none;
     }
