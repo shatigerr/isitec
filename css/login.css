@@ -10,7 +10,8 @@
 body {
     font-family: "Montserrat";
     height: 100vh;
-    background-color: #eeeeff;
+    /* background-color: #eeeeff; */
+    background-image: url(../img/tile_background.png)
     
 }
 
@@ -84,7 +85,7 @@ input[type='text']
 
 }
 
-button{
+button,a{
     
     width: 110px;
     display: inline-block;
@@ -93,8 +94,9 @@ button{
     cursor: pointer;
     background-color: #282d7f;
     border-radius: 4px;
-    padding: 8px;
-    font-weight: 600;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
     color: white;
     margin-bottom: 70px;
 
@@ -112,20 +114,16 @@ button{
     cursor: pointer;
     background-color: white;
     border-radius: 4px;
-    padding: 8px;
-    
     font-weight: 600;
     color: #282d7f;
     border: 1px solid #282d7f;
-    
+    text-decoration: none;
 
 }
 
 
 
-i{
-    font-size: 20px;
-}
+
 
 button:hover{
     background-color: #000000;

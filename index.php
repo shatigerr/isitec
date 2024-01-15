@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
 
     <title>Login</title>
 </head>
@@ -42,8 +42,8 @@
                 </div>
 
                 <div>
-                    <button class="login-btn" type="submit">Login</button>
-                    <button class="signup-btn" type="submit">Sing up</button>
+                    <button class="login-btn" type="submit">Login <i class="fa-solid fa-arrow-right-to-bracket fa-md"></i></button>
+                    <a href="./views/register.php" class="signup-btn">Sing up <i class="fa-solid fa-user-plus"></i></a>
                 </div>
             </div>
             
