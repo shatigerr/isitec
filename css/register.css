@@ -1,4 +1,85 @@
 body {
-    background-image: url(../img/tile_backgroundReg.png);
+    background-image: linear-gradient(to bottom, #98e3d4, #0abe99);
+    
+    
 }
 
+input[type="text"]{
+    width: 300px;
+}
+
+button {
+    width: 300px;
+    margin-right: 5px;
+    margin-top: 10px;
+    
+}
+
+div .input-fname, div .input-lname{
+    width: 141px;
+    
+}
+
+.div-names{
+    margin-left: 20px;
+}
+
+.container {
+    width: 27vw;
+    height: 68vh;
+    
+}
+
+div .signup-btn{
+    
+    margin-top: 5px;
+    margin-left: 25px;
+    width: 300px;
+    text-align: center;
+}
+main form header{
+    margin-top: 10px;
+    margin-bottom: 13px;
+}
+
+.create-btn{
+    margin-left: 26px;
+}
+
+.div-submit{
+    margin-top: 20px;
+}
+
+.img-container
+{
+    width: 27vw;
+    height: 68vh;
+}
+
+.img{
+    width: 27vw;
+    height: 68vh;
+}
+
+.email-valid {
+    border: 2px green solid; 
+    
+}
+
+.email-invalid {
+    border: 2px red solid; 
+    
+}
+
+@media (max-width: 1300px) {
+    .container{
+        width: 350px;
+        height: 67vh;
+        min-width: 300px;
+    }
+    .img-container{
+        display: none;
+    }
+
+
+}

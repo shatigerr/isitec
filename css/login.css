@@ -11,7 +11,8 @@ body {
     font-family: "Montserrat";
     height: 100vh;
     /* background-color: #eeeeff; */
-    background-image: url(../img/tile_background.png)
+    /* background-image: url(../img/tile_background.png) */
+    background-image: linear-gradient(to top, #8360c3, #eeedff);
     
 }
 
@@ -64,11 +65,11 @@ form header p{
     
 }
 
-input[type='text']
+input
 {
 
-    width: 220px;
-    margin: 10px;
+    width: 230px;
+    margin: 5px;
     color: rgb(36, 35, 42);
     font-size: 16px;
     line-height: 20px;
@@ -85,8 +86,24 @@ input[type='text']
 
 }
 
-button,a{
+button{
     
+    width: 115px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background-color: #282d7f;
+    border-radius: 4px;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    color: white;
+    
+
+}
+
+a{
     width: 110px;
     display: inline-block;
     outline: 0;
@@ -98,12 +115,14 @@ button,a{
     font-weight: 700;
     font-size: 14px;
     color: white;
-    margin-bottom: 70px;
-
+    
 }
 
 .login-btn{
     margin-left: 25px;
+    margin-bottom: 70px;
+    margin-top: 6px;
+    padding: 11px 12px 12px 12px;
 }
 
 .signup-btn{
@@ -118,12 +137,14 @@ button,a{
     color: #282d7f;
     border: 1px solid #282d7f;
     text-decoration: none;
-
+    margin-right: 5px;
 }
 
 
 
-
+.input-fname {
+    width: 10px;
+}
 
 button:hover{
     background-color: #000000;
@@ -139,4 +160,6 @@ button:hover{
     .img{
         display: none;
     }
+
+
 }
