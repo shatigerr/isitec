@@ -99,6 +99,20 @@ main form header{
     
 }
 
+.verif{
+    position: absolute;
+    top: 15px;
+    left: 32%;
+    right: 32%;
+    background-color: #4bb543;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid white;
+    color: white;
+    font-weight: 700;
+    
+}
+
 p i{
     margin-right: 5px;
 }

@@ -1,5 +1,10 @@
 <?php
-
+    include_once("./lib/forms.php");
+    $verif;
+    if($_SERVER["REQUEST_METHOD"]=="GET")
+    {
+        $verif = isset($_GET["v"]) ? (int)$_GET["v"] : "";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +25,7 @@
     <title>Login</title>
 </head>
 <body>
+    <?= showModal($verif,2) ?>
     <main>
 
         <div class="img-container">

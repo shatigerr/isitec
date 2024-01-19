@@ -14,7 +14,8 @@
         {
             header("Location:/isitec/views/register.php?e=$num");
         }else{
-            header("Location:/isitec");
+            registerUser($_POST);
+            header("Location:/isitec/index.php?v=1");
         }
     }else if($_SERVER["REQUEST_METHOD"]=="GET")
     {
@@ -42,7 +43,7 @@
 </head>
 <body>
     
-    <?= showError($error) ?>
+    <?= showModal($error,1) ?>
     <main>
 
         <form action="<?=$_SERVER['PHP_SELF']; ?>" method="POST">

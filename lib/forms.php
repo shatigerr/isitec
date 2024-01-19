@@ -1,6 +1,6 @@
 <?php
 
-include_once("../db/db.php");
+include_once(dirname(__FILE__). '/../db/db.php');
 
 $db = new DB();
 
@@ -67,4 +67,30 @@ function showError($num)
     }
     
     return $err;
+}
+
+function showModal($num,$type)
+{
+    $err;
+    if(is_int($num))
+    {
+        if($type == 1)
+        {
+            $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>".ERR[$num]."</p></div>";    
+        }else if($type == 2)
+        {
+            $err = "<div class='verif'><p><i class='fa-solid fa-circle-exclamation'></i>User created succcesfully</p></div>";    
+        }
+    }else{
+        $err = "";
+    }
+    
+    return $err;
+}
+
+function registerUser($userData)
+{
+    global $db;
+
+    $db->insertUser($userData);
 }

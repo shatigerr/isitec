@@ -17,7 +17,6 @@ class DB{
         
         try
         {
-    
             $sql = "SELECT * FROM users WHERE username = :username";
             $usuari = $this->conn->prepare($sql);
             $usuari->execute([":username"=>$name]);
@@ -55,5 +54,20 @@ class DB{
         return $check;
     }
     
+    function insertUser($userData) {
+    
+        try
+        {
+            $sql = "INSERT INTO users VALUES(null, :email, :username, :password, :name, :lastname, NOW(), null, null, 0)";
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute([":email"=>$userData["mail"], ":username"=>$userData["username"], "password"=>$userData["password"], ":name"=>$userData["fname"], ":lastname"=>$userData["lname"]]);
+            if($usuari->rowCount()==1 ){
+                $check=false;            
+            }
+        }catch(PDOException $e)
+        {
+            $check=false;
+        }
+    }
 }
    
