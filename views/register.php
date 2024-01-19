@@ -9,11 +9,17 @@
         $password = strlen($_POST["password"])>0  ? filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING) : "";
         $cpasswd = strlen($_POST["cpasswd"])>0  ? filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING) : "";
 
-        verifPassword($password,$cpasswd);
-        emailValidation($mail);
-        
-        
-        
+        $num = validation(verifPassword($password,$cpasswd),emailValidation($mail),userValidation($username));
+        if($num < 3)
+        {
+            header("Location:/isitec/views/register.php?e=$num");
+        }else{
+            header("Location:/isitec");
+        }
+    }else if($_SERVER["REQUEST_METHOD"]=="GET")
+    {
+        $error = isset($_GET["e"]) ? (int)$_GET["e"] : "";
+
     }
 
 ?>
@@ -35,9 +41,12 @@
     <title>Join us!!</title>
 </head>
 <body>
+    
+    <?= showError($error) ?>
     <main>
-        
-    <form action="<?=$_SERVER['PHP_SELF']; ?>" method="POST">
+
+        <form action="<?=$_SERVER['PHP_SELF']; ?>" method="POST">
+            
             <div class="container">
                 <header>
                     <h1>Join now!!</h1>
@@ -84,6 +93,7 @@
             <!-- imagen -->
             <img class="img" src="../img/aprendiendo.jpg" alt="Estudiando en isitec">
         </div>
+        
     </main>
 </body>
 </html>

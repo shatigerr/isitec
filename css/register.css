@@ -83,3 +83,23 @@ main form header{
 
 
 }
+
+.adios{
+    position: absolute;
+    top: 15px;
+    left: 32%;
+    right: 32%;
+    background-color: #fcbca0;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid black;
+    color: black;
+    font-weight: 700;
+    
+    
+}
+
+p i{
+    margin-right: 5px;
+}
+
