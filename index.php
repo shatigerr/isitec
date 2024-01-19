@@ -1,9 +1,21 @@
 <?php
     include_once("./lib/forms.php");
-    $verif;
+    $verif="";
     if($_SERVER["REQUEST_METHOD"]=="GET")
     {
         $verif = isset($_GET["v"]) ? (int)$_GET["v"] : "";
+    }else if($_SERVER["REQUEST_METHOD"]=="POST")
+    {
+
+        $username = strlen($_POST["username"])>0  ? filter_input(INPUT_POST,"username",FILTER_SANITIZE_STRING) : "";
+        $password = strlen($_POST["password"])>0  ? filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING) : "";
+
+        if(loginUser($username,$password))
+        {
+            header("Location:/isitec/views/home.php");
+        }else{
+            header("Location:/isitec/index.php?v=2");
+        }
     }
 ?>
 
@@ -42,7 +54,7 @@
 
                 <div>
                     <label for="username"><i class="fa-regular fa-envelope"></i></label>
-                    <input type="text" placeholder="Mail" name="username" id="username">   
+                    <input type="text" placeholder="Mail or username" name="username" id="username">   
                 </div>
 
                 <div>
@@ -53,6 +65,10 @@
                 <div>
                     <button class="login-btn" type="submit">Login <i class="fa-solid fa-arrow-right-to-bracket fa-md"></i></button>
                     <a href="./views/register.php" class="signup-btn">Sing up <i class="fa-solid fa-user-plus"></i></a>
+                </div>
+                <div>
+                    <img class="logo" src="./img/logoIsitec.png" alt="">
+                    
                 </div>
             </div>
             

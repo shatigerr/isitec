@@ -79,8 +79,15 @@ function showModal($num,$type)
             $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>".ERR[$num]."</p></div>";    
         }else if($type == 2)
         {
-            $err = "<div class='verif'><p><i class='fa-solid fa-circle-exclamation'></i>User created succcesfully</p></div>";    
+            if($num == 1){
+
+                $err = "<div class='verif'><p><i class='fa-solid fa-circle-exclamation'></i>User created succcesfully</p></div>";    
+            } else if($num == 2)
+            {
+                $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>Username or password incorrect</p></div>";
+            }
         }
+        
     }else{
         $err = "";
     }
@@ -92,5 +99,27 @@ function registerUser($userData)
 {
     global $db;
 
+    $userData["password"] = password_hash($userData["password"],PASSWORD_DEFAULT);
     $db->insertUser($userData);
+}
+
+function loginUser($username,$passwd)
+{
+    global $db;
+    $check = false;
+    $result;
+    if(preg_match("/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/",$username))
+    {
+        $result = $db->getUserDataByuserOrMail($username,2);
+        
+    }else{
+        $result = $db->getUserDataByuserOrMail($username,1);
+    }
+
+    if($result != false && password_verify($passwd,$result["passHash"]))
+    {
+        $check = true;
+    }
+
+    return $check;
 }

@@ -44,7 +44,7 @@ main {
 }
 
 form header{
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 form header p{
@@ -120,7 +120,7 @@ a{
 
 .login-btn{
     margin-left: 25px;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     margin-top: 6px;
     padding: 11px 12px 12px 12px;
 }
@@ -182,4 +182,24 @@ p i {
     color: white;
     font-weight: 700;
     
+}
+
+.adios{
+    position: absolute;
+    top: 15px;
+    left: 32%;
+    right: 32%;
+    background-color: #fcbca0;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid black;
+    color: black;
+    font-weight: 700;
+    
+    
+}
+
+.logo{
+    width: 140px;
+    height: 60px;
 }
