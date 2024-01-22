@@ -56,18 +56,6 @@ function validation(bool $passwordVal,bool $mailVal,bool $userVal)
     return $num; 
 }
 
-function showError($num)
-{
-    $err;
-    if(is_int($num))
-    {
-        $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>".ERR[$num]."</p></div>";    
-    }else{
-        $err = "";
-    }
-    
-    return $err;
-}
 
 function showModal($num,$type)
 {
@@ -81,7 +69,7 @@ function showModal($num,$type)
         {
             if($num == 1){
 
-                $err = "<div class='verif'><p><i class='fa-solid fa-circle-exclamation'></i>User created succcesfully</p></div>";    
+                $err = "<div class='verif'><p><i class='fa-solid fa-check'></i>User created succcesfully</p></div>";    
             } else if($num == 2)
             {
                 $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>Username or password incorrect</p></div>";
