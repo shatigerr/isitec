@@ -73,12 +73,12 @@
                 
                 <div>
                     <label for="password"><i class="fa-solid fa-key"></i></label>
-                    <input type="text" name="password" placeholder="Password" id="password">
+                    <input type="password" name="password" placeholder="Password" id="password">
                 </div>
                 
                 <div>
                     <label for="cpasswd"><i class="fa-solid fa-lock"></i></label>
-                    <input type="text" placeholder="Confirm password" name="cpasswd" id="cpasswd">   
+                    <input type="password" placeholder="Confirm password" name="cpasswd" id="cpasswd">   
                 </div>
                 
 

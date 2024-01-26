@@ -3,6 +3,10 @@
     $verif="";
     if($_SERVER["REQUEST_METHOD"]=="GET")
     {
+        if(isset($_COOKIE["PHPSESSID"]))
+        {
+            header("Location:/isitec/views/home.php");
+        }
         $verif = isset($_GET["v"]) ? (int)$_GET["v"] : "";
     }else if($_SERVER["REQUEST_METHOD"]=="POST")
     {
@@ -12,6 +16,7 @@
 
         if(loginUser($username,$password))
         {
+            session_start();
             header("Location:/isitec/views/home.php");
         }else{
             header("Location:/isitec/index.php?v=2");
@@ -59,7 +64,7 @@
 
                 <div>
                     <label for="password"><i class="fa-solid fa-key"></i></label>
-                    <input type="text" name="password" placeholder="Password" id="password">
+                    <input type="password" name="password" placeholder="Password" id="password">
                 </div>
 
                 <div>
