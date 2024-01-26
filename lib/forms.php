@@ -111,3 +111,10 @@ function loginUser($username,$passwd)
 
     return $check;
 }
+
+function updateLogin($user)
+{
+    global $db;
+    $db->updateActiveStatus(1,$user);
+    $db->updateLastSignIn($user);
+}

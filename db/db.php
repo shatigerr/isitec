@@ -99,5 +99,31 @@ class DB{
             $check=false;
         }
     }
+
+    function updateActiveStatus(int $num,string $user)
+    {
+        
+        $sql = "UPDATE users SET isActive = :active WHERE username = :user";
+        try{
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute([":active"=>$num,":user"=>$user]);
+        }catch(PDOExecption $e){
+            return false;
+        }
+        return $usuari->rowCount()==1;
+
+    }
+
+    function updateLastSignIn($user)
+    {
+        $sql = "UPDATE users SET lastSignIn = NOW() WHERE username = :user";
+        try{
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute([":user"=>$user]);
+        }catch(PDOExecption $e){
+            return false;
+        }
+        return $usuari->rowCount()==1;
+    }
 }
    

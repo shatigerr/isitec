@@ -16,6 +16,7 @@
 
         if(loginUser($username,$password))
         {
+            updateLogin($username);
             session_start();
             header("Location:/isitec/views/home.php");
         }else{
