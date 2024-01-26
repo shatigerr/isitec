@@ -103,7 +103,7 @@ class DB{
     function updateActiveStatus(int $num,string $user)
     {
         
-        $sql = "UPDATE users SET isActive = :active WHERE username = :user";
+        $sql = "UPDATE users SET active = :active WHERE username = :user";
         try{
             $usuari = $this->conn->prepare($sql);
             $usuari->execute([":active"=>$num,":user"=>$user]);

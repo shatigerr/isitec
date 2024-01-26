@@ -118,3 +118,9 @@ function updateLogin($user)
     $db->updateActiveStatus(1,$user);
     $db->updateLastSignIn($user);
 }
+
+function updateLogOut($user) 
+{
+    global $db;
+    $db->updateActiveStatus(0, $user);
+}

@@ -18,6 +18,7 @@
         {
             updateLogin($username);
             session_start();
+            $_SESSION["username"] = $username;
             header("Location:/isitec/views/home.php");
         }else{
             header("Location:/isitec/index.php?v=2");
