@@ -20,9 +20,7 @@
     }else if($_SERVER["REQUEST_METHOD"]=="GET")
     {
         $error = isset($_GET["e"]) ? (int)$_GET["e"] : "";
-
     }
-
 ?>
 
 

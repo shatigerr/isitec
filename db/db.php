@@ -88,9 +88,13 @@ class DB{
     
         try
         {
-            $sql = "INSERT INTO users VALUES(null, :email, :username, :password, :name, :lastname, NOW(), null, null, 0)";
+            $sql = "INSERT INTO users VALUES(null, :email, :username, :password, :name, :lastname, NOW(), null, null, 0, null, :activationCode, null, null)";
             $usuari = $this->conn->prepare($sql);
-            $usuari->execute([":email"=>$userData["mail"], ":username"=>$userData["username"], "password"=>$userData["password"], ":name"=>$userData["fname"], ":lastname"=>$userData["lname"]]);
+
+            $random_number = rand(100, 1000 - 1) * 73;
+            $random_hash = hash('sha256', $random_number);        
+
+            $usuari->execute([":email"=>$userData["mail"], ":username"=>$userData["username"], "password"=>$userData["password"], ":name"=>$userData["fname"], ":lastname"=>$userData["lname"], ":activationCode"=>$random_hash]);
             if($usuari->rowCount()==1 ){
                 $check=false;            
             }

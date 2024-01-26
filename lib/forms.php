@@ -1,5 +1,4 @@
 <?php
-
 include_once(dirname(__FILE__). '/../db/db.php');
 
 $db = new DB();
@@ -55,7 +54,6 @@ function validation(bool $passwordVal,bool $mailVal,bool $userVal)
     }
     return $num; 
 }
-
 
 function showModal($num,$type)
 {
