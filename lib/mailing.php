@@ -37,10 +37,9 @@ include_once(dirname(__FILE__). '/../db/config.php');
         
     }
 
-
     function sendModifyPassword()
     {
-
+        
     }
     
 

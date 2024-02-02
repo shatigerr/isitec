@@ -79,10 +79,7 @@ class DB{
         }
 
         return $result;
-    }
-
-    
-    
+    }  
     
     function insertUser($userData,$hash) {
         $check=false;
@@ -129,5 +126,6 @@ class DB{
         }
         return $usuari->rowCount()==1;
     }
+
 }
    

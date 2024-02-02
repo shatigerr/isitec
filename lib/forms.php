@@ -68,7 +68,7 @@ function showModal($num,$type)
         {
             if($num == 1){
 
-                $err = "<div class='verif'><p><i class='fa-solid fa-check'></i>User created succcesfully</p></div>";    
+                $err = "<div class='verif'><p><i class='fa-solid fa-check'></i>Activation code sent through email</p></div>";    
             } else if($num == 2)
             {
                 $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>Username or password incorrect</p></div>";
@@ -92,8 +92,6 @@ function registerUser($userData)
     
     $db->insertUser($userData,$random_hash);
     sendVerificacionCode($random_hash,$userData["mail"]);
-
-
 }
 
 function loginUser($username,$passwd)
@@ -128,4 +126,15 @@ function updateLogOut($user)
 {
     global $db;
     $db->updateActiveStatus(0, $user);
+}
+
+function verifHash($mail, $hash)
+{
+    global $db;
+    $results = $db->getUserDataByuserOrMail($mail, 2);
+
+    if ($results.activationCode == $hash)
+    {
+        updateActiveStatus(1, $results.username);
+    }
 }
