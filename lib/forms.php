@@ -1,5 +1,6 @@
 <?php
 include_once(dirname(__FILE__). '/../db/db.php');
+include_once('mailing.php');
 
 $db = new DB();
 
@@ -84,9 +85,15 @@ function showModal($num,$type)
 function registerUser($userData)
 {
     global $db;
+    $random_number = rand(100, 1000 - 1) * 73;
+    $random_hash = hash('sha256', $random_number);  
 
     $userData["password"] = password_hash($userData["password"],PASSWORD_DEFAULT);
-    $db->insertUser($userData);
+    
+    $db->insertUser($userData,$random_hash);
+    sendVerificacionCode($random_hash,$userData["mail"]);
+
+
 }
 
 function loginUser($username,$passwd)

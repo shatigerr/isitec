@@ -1,5 +1,6 @@
 <?php
     include_once("../lib/forms.php");
+    $error="";
     if($_SERVER["REQUEST_METHOD"]=="POST")
     {
         $username = strlen($_POST["username"])>0  ? filter_input(INPUT_POST,"username",FILTER_SANITIZE_STRING) : "";
@@ -14,7 +15,9 @@
         {
             header("Location:/isitec/views/register.php?e=$num");
         }else{
+               
             registerUser($_POST);
+
             header("Location:/isitec/index.php?v=1");
         }
     }else if($_SERVER["REQUEST_METHOD"]=="GET")

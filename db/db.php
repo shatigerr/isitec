@@ -84,24 +84,24 @@ class DB{
     
     
     
-    function insertUser($userData) {
-    
+    function insertUser($userData,$hash) {
+        $check=false;
         try
         {
             $sql = "INSERT INTO users VALUES(null, :email, :username, :password, :name, :lastname, NOW(), null, null, 0, null, :activationCode, null, null)";
             $usuari = $this->conn->prepare($sql);
 
-            $random_number = rand(100, 1000 - 1) * 73;
-            $random_hash = hash('sha256', $random_number);        
-
-            $usuari->execute([":email"=>$userData["mail"], ":username"=>$userData["username"], "password"=>$userData["password"], ":name"=>$userData["fname"], ":lastname"=>$userData["lname"], ":activationCode"=>$random_hash]);
+            $usuari->execute([":email"=>$userData["mail"], ":username"=>$userData["username"], "password"=>$userData["password"], ":name"=>$userData["fname"], ":lastname"=>$userData["lname"], ":activationCode"=>$hash]);
             if($usuari->rowCount()==1 ){
-                $check=false;            
+                $check=true;            
             }
         }catch(PDOException $e)
         {
+            echo $e;
             $check=false;
         }
+
+        return $check;
     }
 
     function updateActiveStatus(int $num,string $user)
