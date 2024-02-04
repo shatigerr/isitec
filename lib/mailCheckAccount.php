@@ -7,8 +7,8 @@
         $hash = strlen($_GET["code"]) > 0  ? filter_input(INPUT_GET,"code",FILTER_SANITIZE_STRING) : "";
     }else if (isset($_POST["btAccept"]))
     {
-        $mail = $_POST["data"];
-        verifHash($mail, $hash);
+        $data = explode("#",$_POST["data"]);
+        verifHash($data[0], $data[1]);
     }
 
     // if(isset($_POST["btDecline"]))
@@ -70,7 +70,7 @@
                 <form action="<?=$_SERVER['PHP_SELF']; ?>" method="POST">
                     <button name="btDecline" class="button is-ghost">Decline</button>
                     <button name="btAccept" class="button is-primary">Accept</button>
-                    <input name="data" type="hidden" value='<?= $_GET["mail"]. "@" . $_GET["code"] ?>'  />
+                    <input name="data" type="hidden" value='<?= $_GET["mail"]. "#" . $_GET["code"] ?>'  />
                 </form>
             </footer>
         </article>

@@ -133,8 +133,8 @@ function verifHash($mail, $hash)
     global $db;
     $results = $db->getUserDataByuserOrMail($mail, 2);
 
-    if ($results.activationCode == $hash)
+    if ($results["activationCode"] == $hash)
     {
-        updateActiveStatus(1, $results.username);
+        $db->updateActiveStatus(1, $results["username"]);
     }
 }
