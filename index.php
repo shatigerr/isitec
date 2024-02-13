@@ -89,9 +89,9 @@
         <div>
             <div class="dialog-top">
                 <h3>Enter your Email</h3>
-                <input placeholder="Email" type="email">
+                <input id="popInput" placeholder="Email" type="email">
             </div>
-            <div class="dialog-bot">
+            <div id="popButtonsContainer" class="dialog-bot">
                 <button>Send Email</button>
                 <button id="cancel">Cancel</button>
             </div>
