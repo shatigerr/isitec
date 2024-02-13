@@ -138,3 +138,19 @@ function verifHash($mail, $hash)
         $db->updateActiveStatus(1, $results["username"]);
     }
 }
+
+function sendNewPassword($email,$passwd)
+{
+    global $db;
+    $random_number = rand(100, 1000 - 1) * 73;
+    $random_hash = hash('sha256', $random_number);
+
+    $db->updatePasswordCode($random_hash,$email,$passwd);
+    sendModifyPassword($random_hash,$email);
+    
+}
+
+function updatePassword($email)
+{
+
+}

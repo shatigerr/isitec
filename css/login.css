@@ -109,13 +109,22 @@ a{
     outline: 0;
     border: 0;
     cursor: pointer;
-    
     border-radius: 4px;
     padding: 12px;
     font-weight: 700;
     font-size: 14px;
-    color: white;
+    color: black;
     
+}
+.reset-password-container{
+    width: 100%;
+    margin-right: 36px;
+}
+.a-reset-password{
+    padding: 2px;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
 }
 
 .login-btn{
@@ -151,6 +160,51 @@ button:hover{
     color: white;
 }
 
+dialog{
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    padding: 5px;
+    border: 2px solid black;
+    width: 300px;
+    height: 25vh;
+
+}
+
+dialog div{
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.dialog-top{
+    
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+    
+    
+}
+
+.dialog-bot{
+    
+    flex-direction: row;
+    align-items: start;
+    
+    
+}
+
+
+
+dialog h3{
+    margin-left: 6px;
+}
+
+
+
 @media (max-width: 1058px) {
     .container{
         width: 350px;
@@ -159,6 +213,11 @@ button:hover{
     }
     .img{
         display: none;
+    }
+
+    dialog{
+        left: 30%;
+        top: 35%;
     }
 
     
@@ -230,6 +289,9 @@ p i {
     }
   }
   
+.blur{
+    filter: blur(4px);
+}
 
 .logo{
     width: 140px;

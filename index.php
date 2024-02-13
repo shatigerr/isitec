@@ -36,8 +36,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-
+    <script src="./js/modal.js" ></script>
     <script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
     
 
@@ -45,7 +44,7 @@
 </head>
 <body>
     <?= showModal($verif,2) ?>
-    <main>
+    <main id="main">
 
         <div class="img-container">
             <!-- imagen -->
@@ -66,10 +65,14 @@
 
                 <div>
                     <label for="password"><i class="fa-solid fa-key"></i></label>
-                    <input type="password" name="password" placeholder="Password" id="password">
+                    <input type="password" name="password" placeholder="Password" id="password">    
+                </div>
+                <div class="reset-password-container">
+                    <a id="a" class="a-reset-password" >Change or reset password</a>
                 </div>
 
                 <div>
+                    
                     <button class="login-btn" type="submit">Login <i class="fa-solid fa-arrow-right-to-bracket fa-md"></i></button>
                     <a href="./views/register.php" class="signup-btn">Sing up <i class="fa-solid fa-user-plus"></i></a>
                 </div>
@@ -82,5 +85,17 @@
 
         </form>
     </main>
+    <dialog id="dialog">
+        <div>
+            <div class="dialog-top">
+                <h3>Enter your Email</h3>
+                <input placeholder="Email" type="email">
+            </div>
+            <div class="dialog-bot">
+                <button>Send Email</button>
+                <button id="cancel">Cancel</button>
+            </div>
+        </div>
+    </dialog>
 </body>
 </html>

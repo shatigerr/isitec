@@ -127,5 +127,17 @@ class DB{
         return $usuari->rowCount()==1;
     }
 
+    function updatePasswordCode($hash,$email)
+    {
+        $sql = "UPDATE users SET resetPassExpiry = ADDTIME(NOW(),'00:30:00'), resetPassCode=:passcode WHERE mail = :mail";
+        try{
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute([":passcode"=>$hash,":mail"=>$email]);
+        }catch(PDOExecption $e){
+            return false;
+        }
+        return $usuari->rowCount()==1; 
+    }
+
 }
    
