@@ -10,18 +10,27 @@
         $verif = isset($_GET["v"]) ? (int)$_GET["v"] : "";
     }else if($_SERVER["REQUEST_METHOD"]=="POST")
     {
-
-        $username = strlen($_POST["username"])>0  ? filter_input(INPUT_POST,"username",FILTER_SANITIZE_STRING) : "";
-        $password = strlen($_POST["password"])>0  ? filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING) : "";
-
-        if(loginUser($username,$password))
+        if (isset($_POST["login"]))
         {
-            updateLogin($username);
-            session_start();
-            $_SESSION["username"] = $username;
-            header("Location:/isitec/views/home.php");
-        }else{
-            header("Location:/isitec/index.php?v=2");
+            $username = strlen($_POST["username"])>0  ? filter_input(INPUT_POST,"username",FILTER_SANITIZE_STRING) : "";
+            $password = strlen($_POST["password"])>0  ? filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING) : "";
+
+            if(loginUser($username,$password))
+            {
+                updateLogin($username);
+                session_start();
+                $_SESSION["username"] = $username;
+                header("Location:/isitec/views/home.php");
+            }else{
+                header("Location:/isitec/index.php?v=2");
+            }
+        }
+        else {
+            if (isset($_POST["send"]))
+            {
+                $email = strlen($_POST["email"])>0  ? filter_input(INPUT_POST,"email",FILTER_SANITIZE_STRING) : "";
+                sendVerificationCode($email);    
+            }
         }
     }
 ?>
@@ -72,8 +81,7 @@
                 </div>
 
                 <div>
-                    
-                    <button class="login-btn" type="submit">Login <i class="fa-solid fa-arrow-right-to-bracket fa-md"></i></button>
+                    <button class="login-btn" type="submit" name="login">Login <i class="fa-solid fa-arrow-right-to-bracket fa-md"></i></button>
                     <a href="./views/register.php" class="signup-btn">Sing up <i class="fa-solid fa-user-plus"></i></a>
                 </div>
                 <div>
@@ -85,16 +93,19 @@
 
         </form>
     </main>
+
     <dialog id="dialog">
         <div>
-            <div class="dialog-top">
-                <h3>Enter your Email</h3>
-                <input id="popInput" placeholder="Email" type="email">
-            </div>
-            <div id="popButtonsContainer" class="dialog-bot">
-                <button>Send Email</button>
-                <button id="cancel">Cancel</button>
-            </div>
+            <form action="./index.php" method="POST">
+                <div class="dialog-top">
+                    <h3>Enter your Email</h3>
+                    <input id="popInput" placeholder="Email" name="email" type="email">
+                </div>
+                <div id="popButtonsContainer" class="dialog-bot">
+                    <button id="send" name="send" type="submit">Send<i class="fa-regular fa-paper-plane"></i></button>
+                    <button id="cancel">Close<i class="fa-regular fa-circle-xmark"></i></button>
+                </div>
+            </form>
         </div>
     </dialog>
 </body>

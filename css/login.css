@@ -199,13 +199,9 @@ dialog div{
     
 }
 
-
-
 dialog h3{
     margin-left: 6px;
 }
-
-
 
 @media (max-width: 1058px) {
     .container{
@@ -314,4 +310,18 @@ dialog p {
 #popButtonsContainer button {
     width: 15vw;
     margin: 0.25vh 0.1vw 0 0.1vw;
+}
+
+#send i {
+    padding-left: 15px;
+}
+
+#cancel i {
+    padding-left: 10px;
+}
+
+#cancel {
+    background-color: white;
+    color: #282d7f;
+    border: 1px solid #282d7f;
 }

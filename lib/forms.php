@@ -150,6 +150,14 @@ function sendNewPassword($email,$passwd)
     
 }
 
+function sendVerificationCode($email)
+{
+    $random_number = rand(100, 1000 - 1) * 73;
+    $random_hash = hash('sha256', $random_number);
+
+    sendModifyPassword($random_hash,$email);
+}
+
 function updatePassword($email)
 {
 
