@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"]== "GET")
     
     if(verifPassword($password,$confirmPassword) && !emailValidation($mail))
     {
-        sendNewPassword($mail,$password);
+        updatePassword($mail,$password);
     }
 
 }

@@ -1,5 +1,6 @@
 <?php
     include_once("./lib/forms.php");
+    $err="";
     $verif="";
     if($_SERVER["REQUEST_METHOD"]=="GET")
     {
@@ -29,7 +30,12 @@
             if (isset($_POST["send"]))
             {
                 $email = strlen($_POST["email"])>0  ? filter_input(INPUT_POST,"email",FILTER_SANITIZE_STRING) : "";
-                sendVerificationCode($email);    
+                if(!emailValidation($email))
+                {
+                    sendPasswordCode($email);   
+                }else{
+                    header("Location:/isitec/index.php?v=2"); 
+                }
             }
         }
     }
@@ -100,6 +106,7 @@
                 <div class="dialog-top">
                     <h3>Enter your Email</h3>
                     <input id="popInput" placeholder="Email" name="email" type="email">
+                    <?= $err ?>
                 </div>
                 <div id="popButtonsContainer" class="dialog-bot">
                     <button id="send" name="send" type="submit">Send<i class="fa-regular fa-paper-plane"></i></button>

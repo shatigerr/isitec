@@ -8,7 +8,8 @@
     }else if (isset($_POST["btAccept"]))
     {
         $data = explode("#",$_POST["data"]);
-        verifHash($data[0], $data[1]);
+        activateAccount($data[0], $data[1]);
+
     }
 
     // if(isset($_POST["btDecline"]))
@@ -42,7 +43,7 @@
 
                 <h2>Terms and Conditions for Account Activation</h2>
 
-                <p>By activating your account on [Platform/Service Name], you agree to the following terms and
+                <p>By activating your account on ISITEC, you agree to the following terms and
                     conditions:</p>
 
                 <ol>

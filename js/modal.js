@@ -17,8 +17,5 @@ document.addEventListener("DOMContentLoaded", () => {
         dialog.close();
         
     })
-    
-
-
-    
+     
 })

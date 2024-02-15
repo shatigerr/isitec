@@ -1,3 +1,23 @@
+<?php
+    include_once(dirname(__FILE__). '/../lib/forms.php');
+    if($_SERVER["REQUEST_METHOD"]=="GET" && !isset($_GET["code"]))
+    {
+        header("Location:/isitec/");
+    }else if($_SERVER["REQUEST_METHOD"]== "POST"){
+    
+        $mail = isset($_POST["mail"])  ? filter_input(INPUT_POST,"mail",FILTER_SANITIZE_EMAIL) : "";
+        $password = isset($_POST["password"])  ? filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING) : "";
+        $confirmPassword = isset($_POST["confirmPassword"])>0  ? filter_input(INPUT_POST,"confirmPassword",FILTER_SANITIZE_STRING) : "";
+        
+        if(verifPassword($password,$confirmPassword) && !emailValidation($mail))
+        {
+            updatePassword($mail,$password);
+        }
+    
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,18 +33,13 @@
 <body>
     <div class="mainDiv">
         <div class="cardStyle">
-            <form action="../lib/resetPassword/resetPasswordSend.php" method="post" name="signupForm" id="signupForm">
+            <form action="<?=$_SERVER['PHP_SELF']; ?>" method="post" name="signupForm" id="signupForm">
 
                 <img src="../img/logoIsitec.png" id="signupLogo" />
 
                 <h1 class="formTitle">
                     Change your password
                 </h1>
-
-                <div class="inputDiv">
-                    <label class="inputLabel" for="password"><i class="fa-solid fa-envelope fa-md"></i></label>
-                    <input placeholder="Mail" type="email" id="password" name="mail" required>
-                </div>
 
                 <div class="inputDiv">
                     <label class="inputLabel" for="password"><i class="fa-solid fa-lock fa-md"></i></label>
@@ -34,6 +49,7 @@
                 <div class="inputDiv">
                     <label class="inputLabel" for="confirmPassword"><i class="fa-solid fa-key fa-md"></i></label>
                     <input placeholder="Confirm New Password" type="password" id="confirmPassword" name="confirmPassword">
+                    <input type="hidden" name="mail" value="<?= isset($_GET["mail"]) ? $_GET["mail"] : ""?>">
                 </div>
 
                 <div class="buttonWrapper">

@@ -85,7 +85,7 @@ class DB{
         $check=false;
         try
         {
-            $sql = "INSERT INTO users VALUES(null, :email, :username, :password, :name, :lastname, NOW(), null, null, 0, null, :activationCode, null, null)";
+            $sql = "INSERT INTO users VALUES(null, :email, :username, :password, :name, :lastname, NOW(), null, null, 0, ADDTIME(NOW(),'00:30:00'), :activationCode, null, null)";
             $usuari = $this->conn->prepare($sql);
 
             $usuari->execute([":email"=>$userData["mail"], ":username"=>$userData["username"], "password"=>$userData["password"], ":name"=>$userData["fname"], ":lastname"=>$userData["lname"], ":activationCode"=>$hash]);
@@ -138,6 +138,19 @@ class DB{
         }
         return $usuari->rowCount()==1; 
     }
+
+    function updatePassword($email,$password)
+    {
+        $sql = "UPDATE users SET passHash = :pass WHERE mail = :mail";
+        try{
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute([":pass"=>$password,":mail"=>$email]);
+        }catch(PDOExecption $e){
+            return false;
+        }
+        return $usuari->rowCount()==1; 
+    }
+
 
 }
    

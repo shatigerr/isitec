@@ -91,6 +91,7 @@ function registerUser($userData)
     $userData["password"] = password_hash($userData["password"],PASSWORD_DEFAULT);
     
     $db->insertUser($userData,$random_hash);
+    
     sendVerificacionCode($random_hash,$userData["mail"]);
 }
 
@@ -106,8 +107,8 @@ function loginUser($username,$passwd)
     }else{
         $result = $db->getUserDataByuserOrMail($username,1);
     }
-
-    if($result != false && password_verify($passwd,$result["passHash"]))
+    //FALTA CONTROLAR USUARIO ACTIVO
+    if($result != false && $result["active"] == "1" && password_verify($passwd,$result["passHash"]))
     {
         $check = true;
     }
@@ -128,37 +129,37 @@ function updateLogOut($user)
     $db->updateActiveStatus(0, $user);
 }
 
-function verifHash($mail, $hash)
+function activateAccount($mail, $hash)
 {
     global $db;
     $results = $db->getUserDataByuserOrMail($mail, 2);
 
-    if ($results["activationCode"] == $hash)
+    if ($results["activationDate"] > date('Y-m-j H:i:s') && $results["activationCode"] == $hash)
     {
         $db->updateActiveStatus(1, $results["username"]);
     }
 }
 
-function sendNewPassword($email,$passwd)
+
+function sendPasswordCode($email)
 {
     global $db;
     $random_number = rand(100, 1000 - 1) * 73;
     $random_hash = hash('sha256', $random_number);
-
-    $db->updatePasswordCode($random_hash,$email,$passwd);
+    $db->updatePasswordCode($random_hash,$email);
     sendModifyPassword($random_hash,$email);
+}
+
+function updatePassword($email,$password)
+{
+    //Contolar la hora!!!!!!!
+    global $db;
     
-}
+    $user = $db->getUserDataByuserOrMail($email,2);
+    if($user["resetPassExpiry"]> date('Y-m-j H:i:s'))
+    {
 
-function sendVerificationCode($email)
-{
-    $random_number = rand(100, 1000 - 1) * 73;
-    $random_hash = hash('sha256', $random_number);
-
-    sendModifyPassword($random_hash,$email);
-}
-
-function updatePassword($email)
-{
-
+        $passwd = password_hash($password,PASSWORD_DEFAULT);
+        $db->updatePassword($email,$passwd);
+    }
 }
