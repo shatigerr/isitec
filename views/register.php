@@ -19,6 +19,7 @@
             registerUser($_POST);
 
             header("Location:/isitec/index.php?v=1");
+            die;
         }
     }else if($_SERVER["REQUEST_METHOD"]=="GET")
     {

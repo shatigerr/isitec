@@ -54,16 +54,10 @@ class DB{
         return $check;
     }
 
-    function getUserDataByuserOrMail($data,$type)
+    function getUserDataByuserOrMail($data)
     {
-        $result=false;;
-        if($type == 1)
-        {
-            $sql = "SELECT * FROM users WHERE username = :username";
-        }else if($type == 2)
-        {
-            $sql = "SELECT * FROM users WHERE mail = :username";
-        }
+        $result=false;
+        $sql = "SELECT * FROM users WHERE (mail = :username OR username = :username)";
         try
         {
             
