@@ -151,6 +151,16 @@ class DB{
         return $usuari->rowCount()==1; 
     }
 
-
+    function verifiyActiveUser($user)
+    {
+        $sql = "SELECT * FROM users WHERE active = '1' AND (mail = :mail OR username = :mail)";
+        try{
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute([":mail"=>$user]);
+        }catch(PDOExecption $e){
+            return false;
+        }
+        return $usuari->rowCount()==1; 
+    }
 }
    

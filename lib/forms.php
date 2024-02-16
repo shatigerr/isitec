@@ -71,7 +71,9 @@ function showModal($num,$type)
                 $err = "<div class='verif'><p><i class='fa-solid fa-check'></i>Activation code sent through email</p></div>";    
             } else if($num == 2)
             {
-                $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>Username or password incorrect</p></div>";
+                $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>Username or password incorrect or</p></div>";
+            }else if($num == 3){
+                $err = "<div class='adios'><p><i class='fa-solid fa-circle-exclamation'></i>Isitec account not activated or doesn't exist</p></div>";
             }
         }
         
@@ -119,7 +121,6 @@ function loginUser($username,$passwd)
 function updateLogin($user)
 {
     global $db;
-    $db->updateActiveStatus(1,$user);
     $db->updateLastSignIn($user);
 }
 
@@ -139,7 +140,6 @@ function activateAccount($mail, $hash)
         $db->updateActiveStatus(1, $results["username"]);
     }
 }
-
 
 function sendPasswordCode($email)
 {
@@ -162,4 +162,14 @@ function updatePassword($email,$password)
         $passwd = password_hash($password,PASSWORD_DEFAULT);
         $db->updatePassword($email,$passwd);
     }
+}
+
+function verifActiveUser($user) {
+    global $db;
+    $check = false;
+    if (emailValidation($user) || !userValidation($user)) {
+        $check = $db->verifiyActiveUser($user);   
+    }
+
+    return $check;
 }

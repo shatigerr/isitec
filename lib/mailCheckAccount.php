@@ -10,12 +10,12 @@
         $data = explode("#",$_POST["data"]);
         activateAccount($data[0], $data[1]);
 
+        header("Location:/isitec/index.php");
     }
-
-    // if(isset($_POST["btDecline"]))
-    // {
-        
-    // }
+    else if(isset($_POST["btDecline"]))
+    {
+        header("Location:/isitec/index.php");
+    }
 ?>
 
 <!DOCTYPE html>

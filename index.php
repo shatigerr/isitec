@@ -15,15 +15,15 @@
         {
             $username = strlen($_POST["username"])>0  ? filter_input(INPUT_POST,"username",FILTER_SANITIZE_STRING) : "";
             $password = strlen($_POST["password"])>0  ? filter_input(INPUT_POST,"password",FILTER_SANITIZE_STRING) : "";
-
-            if(loginUser($username,$password))
+            $active = verifActiveUser($username);
+            if(loginUser($username,$password) && $active)
             {
                 updateLogin($username);
                 session_start();
                 $_SESSION["username"] = $username;
                 header("Location:/isitec/views/home.php");
             }else{
-                header("Location:/isitec/index.php?v=2");
+                $active ? header("Location:/isitec/index.php?v=2") : header("Location:/isitec/index.php?v=3");
             }
         }
         else {
