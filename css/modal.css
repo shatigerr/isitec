@@ -12,7 +12,7 @@ body {
 	min-height: 100vh;
 	font-family: "Montserrat";
 	color: #2d232e;
-	background-color: #c8c0bd;
+	background-image: linear-gradient(to top, #8360c3, #eeedff);
 	position: relative;
 
 }
@@ -264,6 +264,3 @@ img{
     height: 60px;	
 }
 
-form{
-	
-}

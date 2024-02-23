@@ -2,7 +2,7 @@
     include_once(dirname(__FILE__). '/../lib/forms.php');
     if($_SERVER["REQUEST_METHOD"]=="GET" && !isset($_GET["code"]))
     {
-        header("Location:/isitec/");
+        header("Location:/index.php");
     }else if($_SERVER["REQUEST_METHOD"]== "POST"){
     
         $mail = isset($_POST["mail"])  ? filter_input(INPUT_POST,"mail",FILTER_SANITIZE_EMAIL) : "";
@@ -12,6 +12,8 @@
         if(verifPassword($password,$confirmPassword) && !emailValidation($mail))
         {
             updatePassword($mail,$password);
+            header("Location:/index.php");
+            die();
         }
     
     }

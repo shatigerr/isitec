@@ -13,12 +13,12 @@
         $num = validation(verifPassword($password,$cpasswd),emailValidation($mail),userValidation($username));
         if($num < 3)
         {
-            header("Location:/isitec/views/register.php?e=$num");
+            header("Location:/views/register.php?e=$num");
         }else{
                
             registerUser($_POST);
 
-            header("Location:/isitec/index.php?v=1");
+            header("Location:/index.php?v=1");
             die;
         }
     }else if($_SERVER["REQUEST_METHOD"]=="GET")
@@ -85,7 +85,7 @@
                 
 
                 <button id="btn" class="create-btn" type="submit">Create an account <i class="fa-solid fa-user-plus"></i></button>
-                <a href="/isitec" class="signup-btn">I already have account <i class="fa-solid fa-arrow-right-to-bracket fa-md"></i> </a> 
+                <a href="/" class="signup-btn">I already have account <i class="fa-solid fa-arrow-right-to-bracket fa-md"></i> </a> 
 
             </div>
             

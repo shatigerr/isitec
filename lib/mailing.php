@@ -12,7 +12,7 @@ function sendVerificacionCode($code, $email)
     $mail->SMTPDebug = 0;
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'tls';
-    $mail->Host = 'smtp.gmail.com';
+    $mail->Host = 'smtp.dondominio.com';
     $mail->Port = 587;
 
     $mail->Username = MAIL_USER;
@@ -70,7 +70,7 @@ function sendVerificacionCode($code, $email)
                 <h1>Hello <span style="color: #282d7f;">' . $email . '</span>,</h1>
                 <p>Thank you for registering with our service. We are pleased to welcome you to our community.</p>
                 <p>To begin enjoying all the features of our service, simply click the following button to confirm your registration:</p>
-                <button><a class="button" href="http://127.0.0.1/isitec/lib/mailCheckAccount.php?code=' . $code . '&mail=' . $email . '">Confirm Registration</a></button>
+                <button><a class="button" href="http://www.easytec.cat/lib/mailCheckAccount.php?code=' . $code . '&mail=' . $email . '">Confirm Registration</a></button>
                 <p>If you have any questions or need assistance, feel free to contact us.</p>
                 <p>Thank you!</p>
             </div>        
@@ -99,7 +99,7 @@ function sendModifyPassword($code, $email)
     $mail->SMTPDebug = 0;
     $mail->SMTPAuth = true;
     $mail->SMTPSecure = 'tls';
-    $mail->Host = 'smtp.gmail.com';
+    $mail->Host = 'smtp.dondominio.com';
     $mail->Port = 587;
 
     $mail->Username = MAIL_USER;
@@ -157,7 +157,7 @@ function sendModifyPassword($code, $email)
             <div class="container">
                 <h1>Hello ' . $email . ',</h1>
                 <p>We received a request to reset your password. If you made this request, please click the button below to reset your password. If you didn\'t make this request, you can safely ignore this email.</p>
-                <button><a class="button" href="http://127.0.0.1/isitec/views/resetPassword.php?code=' . $code . '&mail=' . $email . '&status=1">Reset Password</a></button>
+                <button><a class="button" href="http://www.easytec.cat/views/resetPassword.php?code=' . $code . '&mail=' . $email . '&status=1">Reset Password</a></button>
                 <p>If the button above doesn\'t work, you can also copy and paste the following link into your web browser:</p>
                 <p>If you need further assistance, please contact our support team.</p>
                 <p>Thank you!</p>

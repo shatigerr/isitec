@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const a = document.getElementById("a");
     const cancel = document.getElementById("cancel");
     const main = document.getElementById("main");
+    const dialogForm = document.getElementById("dialog-Form");
     
     
 
@@ -17,5 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
         dialog.close();
         
     })
+
      
 })

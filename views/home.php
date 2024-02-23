@@ -2,7 +2,7 @@
     if(!isset($_COOKIE["PHPSESSID"]))
     {
         
-        header("Location:/isitec/index.php");
+        header("Location:/index.php");
     }else{
         session_start();
     }

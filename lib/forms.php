@@ -160,8 +160,8 @@ function loginProcess()
         updateLogin($username);
         session_start();
         $_SESSION["username"] = $username;
-        header("Location:/isitec/views/home.php");
+        header("Location:/views/home.php");
     } else {
-        $active ? header("Location:/isitec/index.php?v=2") : header("Location:/isitec/index.php?v=3");
+        $active ? header("Location:/index.php?v=2") : header("Location:/index.php?v=3");
     }
 }

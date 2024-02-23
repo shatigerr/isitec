@@ -6,7 +6,7 @@
     {
         if(isset($_COOKIE["PHPSESSID"]))
         {
-            header("Location:/isitec/views/home.php");
+            header("Location:/views/home.php");
         }
         $verif = isset($_GET["v"]) ? (int)$_GET["v"] : "";
     }else if($_SERVER["REQUEST_METHOD"]=="POST")
@@ -22,7 +22,7 @@
             {
                 sendPasswordCode($email);   
             }else{
-                header("Location:/isitec/index.php?v=2"); 
+                $err = "EMAIL DOESN'T EXISTS";
             }
             
         }
@@ -90,7 +90,7 @@
 
     <dialog id="dialog">
         <div>
-            <form action="./index.php" method="POST">
+            <form id="dialog-Form" action="./index.php" method="POST">
                 <div class="dialog-top">
                     <h3>Enter your Email</h3>
                     <input id="popInput" placeholder="Email" name="email" type="email">

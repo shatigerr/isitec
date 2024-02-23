@@ -159,6 +159,7 @@ button:hover{
 }
 
 dialog{
+    border-radius:8px;
     position: absolute;
     top: 30%;
     left: 40%;
@@ -166,6 +167,14 @@ dialog{
     border: 2px solid black;
     width: 300px;
     height: 35vh;
+    animation-name: dialogAnim;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1;
+    animation-iteration-count: unset;
+    animation-direction: normal;
+    animation-fill-mode: forwards;
+    animation-play-state: initial;
 
 }
 
@@ -212,12 +221,22 @@ dialog h3{
     }
 
     dialog{
-        left: 30%;
-        top: 35%;
+        left: 30vw;
+        top: 30vh;
+    }
+    dialog button {
+        width: 2px;
     }
 
-    
+}
 
+@media (max-width: 480px) {
+    
+    dialog{
+        left: 10vw;
+        top: 30vh;
+    }
+    
 
 }
 
@@ -283,7 +302,26 @@ p i {
       opacity: 0;
       transform: translateY(-100px);
     }
-  }
+}
+
+@keyframes dialogAnim {
+    0% {
+      opacity: 0;
+      transform: translateY(-100px);
+      main{
+        filter: blur(0px);
+      }
+    }
+    20%,80% {
+      opacity: 1;
+      transform: translateX(0);
+      
+      main{
+        filter: blur(2px);
+      }
+    }
+    
+}
   
 .blur{
     filter: blur(4px);
@@ -306,8 +344,8 @@ dialog p {
 }
 
 #popButtonsContainer button {
-    width: 15vw;
-    margin: 0.25vh 0.1vw 0 0.1vw;
+    width: 100%;
+    margin: 0.25vh 0 0 0.3vw;
 }
 
 #send i {
