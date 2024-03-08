@@ -94,7 +94,7 @@
 
         <div class="img-container">
             <!-- imagen -->
-            <img class="img" src="../img/aprendiendo.jpg" alt="Estudiando en isitec">
+            <img class="img" src="../img/aprendiendo_1.webp" alt="Estudiando en isitec">
         </div>
         
     </main>

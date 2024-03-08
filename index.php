@@ -34,7 +34,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="./css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +50,7 @@
 
         <div class="img-container">
             <!-- imagen -->
-            <img class="img" src="./img/estudianteisitec.jpg" alt="Estudiando en isitec">
+            <img class="img" src="./img/estudianteisitec_1.webp" alt="Estudiando en isitec">
         </div>
         
         <form action="./index.php" method="POST">
@@ -79,7 +78,7 @@
                     <a href="./views/register.php" class="signup-btn">Sing up <i class="fa-solid fa-user-plus"></i></a>
                 </div>
                 <div>
-                    <img class="logo" src="./img/logoIsitec.png" alt="">
+                    <img class="logo" src="./img/logoIsitec_1.webp" alt="">
                     
                 </div>
             </div>

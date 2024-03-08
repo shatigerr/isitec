@@ -34,7 +34,7 @@
         <article class="modal-container">
             <header class="modal-container-header">
                 <h1 class="modal-container-title">
-                    <img src="../img/logoIsitec.png" alt="">
+                    <img src="../img/logoIsitec_1.webp" alt="">
                     Terms and Services
                 </h1>
                 

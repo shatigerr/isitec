@@ -37,7 +37,7 @@
         <div class="cardStyle">
             <form action="<?=$_SERVER['PHP_SELF']; ?>" method="post" name="signupForm" id="signupForm">
 
-                <img src="../img/logoIsitec.png" id="signupLogo" />
+                <img src="../img/logoIsitec_1.webp" id="signupLogo" />
 
                 <h1 class="formTitle">
                     Change your password
