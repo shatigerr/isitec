@@ -5,6 +5,17 @@
     font-family: "Montserrat";
 }
 
+*::-webkit-scrollbar {
+	background-color: transparent;
+	width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+	border-radius: 99px;
+	background-color: #777474;
+	border: 4px solid #fff;
+}
+
 main{
     display: flex;
 }
@@ -164,10 +175,13 @@ header p{
 }
 
 .section_main_info_header{
-    width: 100%;
+    width: 90%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    
     align-items: baseline;
+    margin-left: 5%;
+    
 }
 
 .section_main_info_card{
@@ -175,7 +189,7 @@ header p{
     margin-top: 30px;
     border-radius: 15px;
     padding: 15px;
-    width: 80%;
+    width: 90%;
     margin-right: auto;
     background-color: #ffff;
     display: flex;
@@ -194,6 +208,7 @@ header p{
     & p {
         text-align: justify;
         font-size: 13px;
+        
         color: #999c9d;
     }
 
@@ -215,7 +230,7 @@ header p{
 }
 
 .section_main_info_new_courses{
-    width: 80%;
+    width: 90%;
     margin-top: 15px;
     margin-left: auto;
     margin-right: auto;
@@ -225,42 +240,93 @@ header p{
     }
     & section {
 
-        margin-top: 15px;
+        margin-top: 5px;
         display: flex;
+        justify-content: space-between;
+        height: 35vh;
 
-        & div{
-            padding: 10px;
-            border-radius: 15px;
-            height: 15vh;
-            color: white;
-            border: 1px solid black;
-            & p {
-                font-size: 13px;
-            }
-            & button{
-                
-                height: 30px;
-                width: 150px;
-                padding: 0;
-            }
-        }
-
-        & div:nth-child(1){
-            background-image: linear-gradient(to right, #4f57d7, #4b51c3);
-            margin-right: 5px;
-        }
-        
-        & div:nth-child(2){
-            background-image: linear-gradient(to right, #4b51c3, #5e6dec);
-            margin-right: 5px;
-        }
-        
-        & div:nth-child(3){
-            background-image: linear-gradient(to right, #5e6dec, #92a6d9);
-            margin-left: 5px;
-        }
-        
-        
         
     }
 }
+
+
+.card {
+    width: 33%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 5px;
+    height: 45vh;
+    transition: all 300ms ease;
+    overflow-y: auto;
+    & button{
+        width: 100%;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+      }
+    
+  }
+
+
+  .card img {
+    width: 100%;
+    height: 15vh;
+    display: block;
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 15px;
+  }
+
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .card-description {
+    max-height: 100px; /* Altura máxima de la descripción */
+     /* Habilita el scroll vertical */
+    margin-bottom: 10px;
+    min-height: 80px;
+    color: #888;
+    font-size: small;
+  }
+
+  .card-date {
+    font-size: small;
+    color: #999c9d;
+    margin-bottom: 10px;
+  }
+
+  .truncate{
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* Número de líneas para mostrar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .section_container_profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    & header{
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+    }
+    & img {
+        border-radius: 100%;
+        width: 12vw;
+        height: 12vw;
+    }
+  }
+

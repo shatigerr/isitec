@@ -49,11 +49,11 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                         <i class="fa-solid fa-magnifying-glass fa-sm"></i>
                     </div>
                     <input type="text" placeholder="Search for a course!!">
-                </form> 
+                </form>
 
-                <p><?= date("d M Y, l") ?></p>
+                <p><?=date("d M Y, l")?></p>
             </header>
-            
+
             <section class="section_main_info_card">
                 <div class="section_main_info_card_div">
                     <h2>Welcome Username</h2>
@@ -69,32 +69,62 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                     <h4>New Courses</h4>
                     <a href="#">View All</a>
                 </header>
+
                 <section>
-                    <div>
-                        <h5>Python course for beginners!</h5>
-                        <p>This python course is perfect for ...</p>
-                        <button>Enter Course</button>
+                <div class="card">
+                    <div class="card-header">
+                        <img src="../img/aprendiendo_1.webp" alt="Imagen de ejemplo">
                     </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Administracion de sistemas y redes telematicas profesionasl (Advanced)</h3>
+                        <p class="card-description truncate">Descrip relevante sobre el contenido de la tarjeta. Esta descripción será suficientemente larga para requerir el uso del scroll vertical.</p>
+                        <p class="card-date">8 de marzo de 2024</p>
+                        <button href="#" class="primary">Ver más</button>
+                    </div>
+                </div>
 
-                    <div>
-                        <h5>Python course for beginners!</h5>
-                        <p>This python course is perfect for ...</p>
-                        <button>Enter Course</button>
+                <div class="card">
+                    <div class="card-header">
+                        <img src="../img/support.jpg" alt="Imagen de ejemplo">
                     </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Título de la tarjeta</h3>
+                        <p class="card-description truncate">Descripción larga de la tarjeta. Aquí puedes agregar información relevante sobre el contenido de la tarjeta. Esta descripción será suficientemente larga para requerir el uso del scroll vertical.</p>
+                        <p class="card-date">8 de marzo de 2024</p>
+                        <button href="#" class="primary">Ver más</button>
+                    </div>
+                </div>
 
-                    <div>
-                        <h5>Python course for beginners!</h5>
-                        <p>This python course is perfect for ...</p>
-                        <button>Enter Course</button>
+                <div class="card">
+                    <div class="card-header">
+                        <img src="../img/chica-en-ordenador-unscreen.gif" alt="Imagen de ejemplo">
                     </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Título de la tarjeta</h3>
+                        <p class="card-description truncate">Descripscroll vertical.</p>
+                        <p class="card-date">8 de septiembre de 2024</p>
+                        <button href="#" class="primary">Ver más</button>
+                    </div>
+                </div>
+
+                    
                 </section>
 
             </section>
-    
+
         </section>
-        
+
         <section class="section_container_profile">
-            <h2>Adios</h2>
+            <header>
+                <img src="../img/aprendiendo_1.webp" alt="">
+                <h2>Username</h2>
+                <p>mial@mail.com</p>
+                <button>Edit profile</button>
+            </header>
+
+            <div>
+                clases
+            </div>
         </section>
     </main>
 </body>
