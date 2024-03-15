@@ -11,7 +11,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="stylesheet" href="../css/home.css">
     <script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -51,7 +51,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                     <input type="text" placeholder="Search for a course!!">
                 </form>
 
-                <p><?=date("d M Y, l")?></p>
+                <p class="p-date"><?=date("d M Y, l")?></p>
             </header>
 
             <section class="section_main_info_card">
@@ -76,10 +76,15 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                         <img src="../img/aprendiendo_1.webp" alt="Imagen de ejemplo">
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Administracion de sistemas y redes telematicas profesionasl (Advanced)</h3>
-                        <p class="card-description truncate">Descrip relevante sobre el contenido de la tarjeta. Esta descripción será suficientemente larga para requerir el uso del scroll vertical.</p>
+                        <div>
+                            <h3 class="card-title">Administracion de sistemas y redes telematicas profesionasl (Advanced)</h3>
+                            <p class="card-description truncate">Descrip relevante sobre el contenido de la tarjeta. Esta descripción será suficientemente larga para requerir el uso del scroll vertical.</p>
+                        </div>
+
+                        <div>
                         <p class="card-date">8 de marzo de 2024</p>
                         <button href="#" class="primary">Ver más</button>
+                        </div>
                     </div>
                 </div>
 
@@ -88,10 +93,14 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                         <img src="../img/support.jpg" alt="Imagen de ejemplo">
                     </div>
                     <div class="card-content">
+                        <div>
                         <h3 class="card-title">Título de la tarjeta</h3>
                         <p class="card-description truncate">Descripción larga de la tarjeta. Aquí puedes agregar información relevante sobre el contenido de la tarjeta. Esta descripción será suficientemente larga para requerir el uso del scroll vertical.</p>
+                        </div>
+                        <div>
                         <p class="card-date">8 de marzo de 2024</p>
                         <button href="#" class="primary">Ver más</button>
+                        </div>
                     </div>
                 </div>
 
@@ -100,10 +109,15 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                         <img src="../img/chica-en-ordenador-unscreen.gif" alt="Imagen de ejemplo">
                     </div>
                     <div class="card-content">
-                        <h3 class="card-title">Título de la tarjeta</h3>
-                        <p class="card-description truncate">Descripscroll vertical.</p>
-                        <p class="card-date">8 de septiembre de 2024</p>
-                        <button href="#" class="primary">Ver más</button>
+                        <div>
+                            <h3 class="card-title">Título de la tarjeta</h3>
+                            <p class="card-description truncate">Descripscroll vertical.</p>
+                        </div>
+                        <div>
+                            <p class="card-date">8 de septiembre de 2024</p>
+                            <button href="#" class="primary">Ver más</button>
+                        </div>
+                            
                     </div>
                 </div>
 
@@ -119,12 +133,57 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                 <img src="../img/aprendiendo_1.webp" alt="">
                 <h2>Username</h2>
                 <p>mial@mail.com</p>
-                <button>Edit profile</button>
+                <button class="primary">Edit profile</button>
             </header>
 
-            <div>
-                clases
-            </div>
+            <section>
+                <div class="card_container">
+                    <progress max="100" value="10"></progress>
+                    <a href="#" class="progress_card">
+                        <div class="title">
+                            <h5>Title</h5>
+                        </div>
+                        <div class="progress">
+                            <p>30/70</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card_container">
+                    <progress max="100" value="10"></progress>
+                    <a href="#" class="progress_card">
+                        <div class="title">
+                        
+                            <h5>React - </h5>
+                        </div>
+                        <div class="progress">
+                            <p>30/70</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card_container">
+                    <progress max="100" value="10"></progress>
+                    <a class="progress_card">
+                        <div class="title">
+                            <h5>The complete 2024 web bootcamp</h5>
+                        </div>
+                        <div class="progress">
+                            <p>30/70</p>
+                    </div>
+                    </a>
+                </div>
+                <div class="card_container">
+
+                    <progress max="100" value="10"></progress>
+                    <a class="progress_card">
+                        <div class="title">
+                            <h5>Master de programacion de videojuegos con unity 2021 C#</h5>
+                        </div>
+                        <div class="progress">
+                            <p class="">30/70</p>
+                        </div>
+                    </a>
+                </div>
+            </section>
         </section>
     </main>
 </body>
