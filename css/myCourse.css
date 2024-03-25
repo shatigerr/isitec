@@ -1,0 +1,280 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat";
+}
+
+*::-webkit-scrollbar {
+    background-color: transparent;
+    width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 99px;
+    background-color: #777474;
+    border: 4px solid #fff;
+    
+}
+
+main{
+    display: flex;
+}
+
+.sidebar {
+    width: 15%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+nav {
+    margin-bottom: 10vh;
+}
+
+.sidebar img {
+    margin-top: 20px;
+    width: 150px;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 50vh;
+    margin-top: 13px;
+}
+
+ul li {
+    list-style: none;
+    text-align: center;
+    padding: 10px;
+
+}
+
+li{
+    color: black;
+}
+
+.sidebar-logo_container,
+.sidebar_form {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+button {
+
+    width: 115px;
+    display: inline-block;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 14px;
+    border: solid 0.5px black;
+    margin-bottom: 5px
+}
+
+.primary {
+    color: white;
+    background-color: #282d7f;
+}
+
+.secondary {
+    background-color: white;
+    color: #282d7f;
+    border: 1px solid #282d7f;
+}
+
+
+
+.sidebar_form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+button i {
+    color: white;
+}
+
+li:hover {
+    background-color: #282d7f;
+    color: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+
+.nav{
+    margin: 15px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & button{
+        width: 100%;
+    }
+    
+}
+
+.container{
+    height: 100vh;
+}
+
+.card_container{
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    scrollbar-width: 0;
+    justify-content: space-around;
+    background-color: #ebecf0;
+    height: 100vh;
+}
+
+.card_container .card{
+    margin-top: 10px;
+}
+
+.card {
+    width: 25%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 5px;
+    
+    transition: all 300ms ease;
+    overflow-y: auto;
+    height: 45vh;
+    & button {
+        width: 100%;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: none;
+        border:none;
+    }
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        width: 0px;
+    }
+
+}
+
+
+.card img {
+    width: 100%;
+    height: 25vh;
+    display: block;
+    object-fit: cover;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    max-height: 100px;
+    /* Altura máxima de la descripción */
+    /* Habilita el scroll vertical */
+    margin-bottom: 10px;
+    min-height: 80px;
+    color: #888;
+    font-size: small;
+}
+
+.card-date {
+    font-size: small;
+    color: #999c9d;
+    margin-bottom: 10px;
+}
+
+.truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    /* Número de líneas para mostrar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 760px) {
+
+    main {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .sidebar {
+        height: 60px;
+        
+        width: 2em;
+        flex-direction: row;
+
+        width: 100%;
+    }
+
+    .sidebar nav {
+        height: 1em;
+    }
+
+    .sidebar ul {
+        flex-direction: row;
+    }
+
+    .sidebar div {
+        display: none;
+
+    }
+
+    .sidebar form {
+        display: block;
+        height: auto;
+        flex-direction: row;
+        margin-top: 10px;
+        & button:first-child{
+            display: none;
+        }
+    }
+
+    main > section{
+        width: 100%;
+    }
+
+    .card {
+        width: 45%;
+        height: 45vh;
+    }
+
+    .secondary {
+        width: 130px;
+        margin-left: 25px;
+        background-color: white;
+        color: #282d7f;
+        border: 1px solid #282d7f;
+    }
+
+    
+}

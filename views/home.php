@@ -1,9 +1,15 @@
 <?php
+include "../lib/homes.php";
+
 if (!isset($_COOKIE["PHPSESSID"])) {
 
     header("Location:/index.php");
 } else {
     session_start();
+    $user = getUserData($_SESSION["username"]);
+    $_SESSION["mail"] = $user["mail"];
+    $_SESSION["id"] = $user["iduser"];
+
 }
 ?>
 
@@ -13,6 +19,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="stylesheet" href="../css/home.css">
+    
     <script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <title>Home</title>
@@ -20,25 +27,8 @@ if (!isset($_COOKIE["PHPSESSID"])) {
 <body>
     <main>
         <!-- SIDEBAR -->
-        <aside class="sidebar">
-            <div class="sidebar-logo_container">
-                <img src="../img/logoIsitec_1.webp" alt="">
-            </div>
-            <nav>
-                <ul>
-                    <li><i class="fa-solid fa-house-chimney fa-lg"></i></li>
-                    <li><i class="fa-solid fa-book fa-lg"></i></li>
-                    <li><i class="fa-solid fa-heart fa-lg"></i></li>
-                    <li><i class="fa-solid fa-graduation-cap fa-lg"></i></li>
-                    <li><i class="fa-solid fa-gear fa-lg"></i></li>
-                </ul>
-            </nav>
-
-            <form class="sidebar_form" action="./../lib/logout.php" method="post">
-                <button class="primary"><i class="fa-solid fa-headset fa-xl"></i></button>
-                <button class="secondary">Log out</button>
-            </form>
-        </aside>
+        
+        <?php include "../components/sidebar.php" ?>
 
         <!-- FIN SIDEBAR -->
 
@@ -56,7 +46,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
 
             <section class="section_main_info_card">
                 <div class="section_main_info_card_div">
-                    <h2>Welcome Username</h2>
+                    <h2>Welcome <?= $_SESSION["username"] ?></h2>
                     <p>Search any type of Courses and learn where and when you want with flexible online learning platforms. Explore a wide range of subjects, available at your convenience. Start your learning journey today!</p>
                     <button class="primary">Start now</button>
                 </div>
@@ -71,57 +61,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                 </header>
 
                 <section>
-                <div class="card">
-                    <div class="card-header">
-                        <img src="../img/aprendiendo_1.webp" alt="Imagen de ejemplo">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <h3 class="card-title">Administracion de sistemas y redes telematicas profesionasl (Advanced)</h3>
-                            <p class="card-description truncate">Descrip relevante sobre el contenido de la tarjeta. Esta descripción será suficientemente larga para requerir el uso del scroll vertical.</p>
-                        </div>
-
-                        <div>
-                        <p class="card-date">8 de marzo de 2024</p>
-                        <button href="#" class="primary">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <img src="../img/support.jpg" alt="Imagen de ejemplo">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                        <h3 class="card-title">Título de la tarjeta</h3>
-                        <p class="card-description truncate">Descripción larga de la tarjeta. Aquí puedes agregar información relevante sobre el contenido de la tarjeta. Esta descripción será suficientemente larga para requerir el uso del scroll vertical.</p>
-                        </div>
-                        <div>
-                        <p class="card-date">8 de marzo de 2024</p>
-                        <button href="#" class="primary">Ver más</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <img src="../img/chica-en-ordenador-unscreen.gif" alt="Imagen de ejemplo">
-                    </div>
-                    <div class="card-content">
-                        <div>
-                            <h3 class="card-title">Título de la tarjeta</h3>
-                            <p class="card-description truncate">Descripscroll vertical.</p>
-                        </div>
-                        <div>
-                            <p class="card-date">8 de septiembre de 2024</p>
-                            <button href="#" class="primary">Ver más</button>
-                        </div>
-                            
-                    </div>
-                </div>
-
-                    
+                <?= getNewCourses(); ?>                    
                 </section>
 
             </section>
@@ -131,8 +71,8 @@ if (!isset($_COOKIE["PHPSESSID"])) {
         <section class="section_container_profile">
             <header>
                 <img src="../img/aprendiendo_1.webp" alt="">
-                <h2>Username</h2>
-                <p>mial@mail.com</p>
+                <h2><?= $_SESSION["username"] ?></h2>
+                <p><?= $_SESSION["mail"] ?></p>
                 <button class="primary">Edit profile</button>
             </header>
 

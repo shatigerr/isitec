@@ -23,7 +23,7 @@ main {
 }
 
 .sidebar {
-    width: 15%;
+    width: 10%;
     height: 100vh;
     display: flex;
     justify-content: space-between;
@@ -56,6 +56,10 @@ ul li {
     text-align: center;
     padding: 10px;
 
+}
+
+li{
+    color: black;
 }
 
 .sidebar-logo_container,
@@ -353,7 +357,7 @@ header p {
         & .card_container{
             margin-left: 2.5vw;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            border: solid 1px #ccc;
+            border: none;
             margin-top: 10px;
             width: 80%;
             display: flex;
@@ -363,7 +367,7 @@ header p {
         }
     }
     & progress {
-        width: 80%;
+        width: 100%;
     }
     & .progress_card{
         width: 90%;
@@ -372,8 +376,11 @@ header p {
         display: flex;
         justify-content: space-between;
         padding: 10px;
+        text-decoration: none;
+        color: black;
         & div{
             margin: 0.5vw;
+            text-decoration: none;
         }
         & .progress{
             margin: auto;
@@ -381,6 +388,9 @@ header p {
         & .title{
             min-width: 75%;
             max-width: 75%;
+        }
+        & a{
+            color: black;
         }
     }
 }
@@ -426,19 +436,17 @@ header p {
     }
 
     .section_main_info_new_courses section {
-
+        height: auto;
         flex-direction: column;
         align-items: center;
     }
 
     .card {
-        width: 60%;
-        height: 50vh;
+        width: 70%;
+        height: 45vh;
     }
 
-    .card-content {
-        margin-top: 3em;
-    }
+    
 
     main {
         flex-direction: column;
@@ -468,8 +476,11 @@ header p {
     }
 
     .sidebar form {
-        display: none;
-
+        flex-direction: row;
+        margin-top: 5px;
+        & button:first-child{
+            display: none;
+        }
     }
 
     .p-date {
@@ -483,8 +494,10 @@ header p {
 
     html,
     body {
+        
         width: auto !important;
-        overflow-x: hidden !important
+        overflow-x: hidden !important;
+        overflow-y: auto;
     }
 }
 

@@ -156,5 +156,74 @@ class DB{
         }
         return $usuari->rowCount()==1; 
     }
+
+    function insertCourse($data,$id,$imagePath=null)
+    {
+        $check=false;
+        try
+        {
+            $sql = "INSERT INTO courses VALUES(null, :title, :description, NOW(), 0, 0, :image, :idUser, :tags)";
+            $course = $this->conn->prepare($sql);
+
+            $course->execute([":title"=>$data["title"], ":description"=>$data["description"], ":image"=>$imagePath, ":idUser"=>$id, ":tags"=>$data["tags"]]);
+            if($course->rowCount()==1 ){
+                $check=true;            
+            }
+        }catch(PDOException $e)
+        {
+            echo $e;
+            $check=false;
+        }
+
+        return $check;
+    }
+
+    function getCourses($limit = 0){
+
+        $result=false;
+        $sql = $limit > 0 ?"SELECT * FROM courses order by publicationDate DESC LIMIT :limite" : "SELECT * FROM courses order by publicationDate DESC" ;
+        try
+        {
+            $usuari = $this->conn->prepare($sql);
+            if ($limit > 0) {
+                $usuari->bindParam(':limite', $limit, PDO::PARAM_INT);
+            }    
+            $usuari->execute();
+            if($usuari->rowCount()>0 ){
+                 
+                $result = $usuari->fetchAll(PDO::FETCH_ASSOC);
+                
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+        
+
+    }
+
+    function getCourseByAuthor($id)
+    {
+        $result=false;
+        $sql = "SELECT * FROM courses WHERE idUser = :id order by publicationDate DESC";
+        try
+        {
+            
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute(["id"=>$id]);
+            if($usuari->rowCount()>0 ){
+                 
+                $result = $usuari->fetchAll(PDO::FETCH_ASSOC);
+                
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
 }
    
