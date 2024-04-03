@@ -48,7 +48,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`iduser`, `mail`, `username`, `passHash`, `userFirstName`, `userLastName`, `creationDate`, `removeDate`, `lastSignIn`, `active`, `activationDate`, `activationCode`, `resetPassExpiry`, `resetPassCode`) VALUES
-(11, 'adria.martinezm@educem.net', 'adri', '$2y$10$gQifqqgK7ixgUYKG.LrlpevYpjZQXitUy.pw/40FWvQh9ox1uhSPS', '', '', '2024-02-02 09:44:18', NULL, NULL, 0, NULL, '55542a2d1e96a6c375edfe5e47826b665f86e7a19a6d7b778b19989361841570', NULL, NULL);
+(11, 'adria.martinezm@educem.net', 'adri', '$2y$10$gQifqqgK7ixgUYKG.LrlpevYpjZQXitUy.pw/40FWvQh9ox1uhSPS', '', '', '2024-02-02 09:44:18', NULL, NULL, 1, NULL, '55542a2d1e96a6c375edfe5e47826b665f86e7a19a6d7b778b19989361841570', NULL, NULL);
 
 --
 -- Índices para tablas volcadas

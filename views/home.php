@@ -19,6 +19,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="/css/general.css">
     
     <script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -77,7 +78,8 @@ if (!isset($_COOKIE["PHPSESSID"])) {
             </header>
 
             <section>
-                <div class="card_container">
+                <?= getCourseAndProgress($_SESSION["id"]) ?>
+                <!-- <div class="card_container">
                     <progress max="100" value="10"></progress>
                     <a href="#" class="progress_card">
                         <div class="title">
@@ -123,7 +125,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                         </div>
                     </a>
                 </div>
-            </section>
+            </section> -->
         </section>
     </main>
 </body>

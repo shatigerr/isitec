@@ -1,0 +1,251 @@
+.container{
+    background-color: #ebecf0;
+    width: 90%;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.section_main_info_header {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: baseline;
+    margin-left: 2%;
+
+}
+
+h3{
+    margin-top: 20px;
+    margin-left: 3%;
+    margin-bottom: 10px;
+}
+
+.section_main_info_form {
+
+    display: flex;
+    height: fit-content;
+    margin-top: 20px;
+
+    margin-left: 15px;
+
+    & input {
+        border-radius: 10px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+        height: 35px;
+        width: 350px;
+        background-color: #f5f6fa;
+        border: none;
+        border-left: none;
+        padding-left: 5px;
+
+    }
+
+    & div {
+
+        border-radius: 10px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+        height: fit-content;
+        padding: 8.5px;
+        background-color: #d9deeb;
+
+        & i {
+            color: #282d7f;
+        }
+    }
+
+
+
+}
+
+.section_main_info_card {
+    
+    margin-top: 7px;
+    border-radius: 15px;
+    padding: 15px;
+    width: 46%;
+    margin-left: 2%;
+    background-color: #ffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>div:first-child {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        
+        margin-right: 15px;
+    }
+
+    & p {
+        text-align: justify;
+        font-size: 13px;
+
+        color: #999c9d;
+    }
+
+    & button {
+        width: 100%;
+        margin-top: 15px;
+    }
+
+}
+
+
+.section_main_info_card_div{
+    width: 60%;
+    height: 100%;
+    & img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 15px;
+    }
+}
+
+.top_courses{
+    display: flex;
+    justify-content: space-around;
+}
+
+.card_container{
+    border-radius: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    scrollbar-width: 0;
+    justify-content: space-around;
+    background-color: #ebecf0;
+    height: 100vh;
+}
+
+.card_container .card{
+    margin-top: 10px;
+}
+
+.card {
+    
+    width: 25%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 5px;
+    
+    transition: all 300ms ease;
+    overflow-y: auto;
+    height: 45vh;
+    & button {
+        width: 100%;
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        cursor: pointer;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background-color: none;
+        border:none;
+    }
+    &::-webkit-scrollbar {
+        background-color: transparent;
+        width: 0px;
+    }
+
+}
+
+
+.card img {
+    width: 100%;
+    height: 25vh;
+    display: block;
+    object-fit: cover;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-description {
+    max-height: 100px;
+    /* Altura máxima de la descripción */
+    /* Habilita el scroll vertical */
+    margin-bottom: 10px;
+    min-height: 80px;
+    color: #888;
+    font-size: small;
+}
+
+.card-date {
+    font-size: small;
+    color: #999c9d;
+    margin-bottom: 10px;
+}
+
+.truncate {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    /* Número de líneas para mostrar */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.all_courses {
+    width: 98%;
+    display: flex;
+    margin-left: 2%;
+    overflow-x: auto; /* Agrega un scroll horizontal */
+    /* Asegúrate de que haya suficiente espacio para los elementos secundarios */
+    min-width: 98%; 
+}
+
+/* Asegúrate de que cada elemento secundario tenga un ancho mínimo */
+.all_courses .card {
+    min-width: 300px;
+    margin: 15px; /* Establece el ancho mínimo deseado */
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.no_course{
+    margin: auto ;
+}
+
+@media (max-width: 760px) {
+    .top_courses{
+        flex-direction: column;
+    }
+    .container{
+        width: 100%;
+    }
+    .section_main_info_card{
+        width: 95%;
+        margin-bottom: 5px;
+        margin-top: 5px;
+        
+    }
+    .section_main_info_card_div:last-child{
+        height: 25vh;
+    }
+    .section_main_info_form input{
+        width: 100%;
+    }
+}

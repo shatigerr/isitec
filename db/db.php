@@ -225,5 +225,277 @@ class DB{
 
         return $result;
     }
+
+    function getCourseByUserEnrolled($id,$limit = null)
+    {
+        $result=false;
+        $sql = $limit != null ? "SELECT * FROM usercourse WHERE idUser = :id LIMIT 4" : "SELECT * FROM usercourse WHERE idUser = :id" ;
+        try
+        {
+            
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute(["id"=>$id]);
+            if($usuari->rowCount()>0 ){
+                 
+                $result = $usuari->fetchAll(PDO::FETCH_ASSOC);
+                
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
+
+    function getCourseById($id,$op=1){
+        $result = false;
+
+        $sql = $op == 1 ? "SELECT * FROM COURSES WHERE idCourse = :id"  : "SELECT c.*, v.id, v.name,v.video FROM COURSES c LEFT JOIN Videos v ON c.idCourse = v.idCourse WHERE c.idCourse = :id";
+        try
+        {
+            $course = $this->conn->prepare($sql);
+            $course->execute([":id"=>$id]);
+            if($course->rowCount()>0){
+                 
+                $result = $course->fetchAll(PDO::FETCH_ASSOC);       
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
+
+    function getCountVideosWatched($idCourse,$idUser){
+        //SELECT * FROM userVideo ;
+        $result = false;
+        $sql = "SELECT COUNT(*) as total FROM userVideo where iduser = :idU AND idCourse = :idC";
+        try
+        {
+            $course = $this->conn->prepare($sql);
+            $course->execute([":idU"=>$idUser,"idC"=>$idCourse]);
+            if($course->rowCount()==1){
+                 
+                $result = $course->fetch(PDO::FETCH_ASSOC);       
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result["total"];
+    }
+
+    function getCourseVideos($idCourse){
+        $result = false;
+        $sql = "SELECT * FROM Videos WHERE idCourse = :id";
+        try
+        {
+            $course = $this->conn->prepare($sql);
+            $course->execute([":id"=>$idCourse]);
+            if($course->rowCount()>0){
+                 
+                $result = $course->fetchAll(PDO::FETCH_ASSOC);       
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
+
+    function getVideoById($id){
+        $result = false;
+        $sql = "SELECT * FROM Videos WHERE id = :id";
+        try
+        {
+            $course = $this->conn->prepare($sql);
+            $course->execute([":id"=>$id]);
+            if($course->rowCount()==1){
+                 
+                $result = $course->fetch(PDO::FETCH_ASSOC);       
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
+    function deleteOne($table, $id)
+    {
+        $arr = ["courses" => "idCourse", "videos" => "id"];
+        $result = false;
+        
+        // Concatenamos los nombres de tabla y columna en la consulta SQL
+        $sql = "DELETE FROM $table WHERE {$arr[$table]} = :id";
+        
+        try {
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([":id" => (int)$id]);
+            
+            if ($stmt->rowCount() == 1) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            echo "$e";
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    function insertOne($table, $data) {
+        $result = false;
+        
+        // Verifica si la tabla y los datos no están vacíos
+        if (!empty($table) && !empty($data)) {
+            // Construye la consulta SQL dinámicamente
+            $columns = implode(', ', array_keys($data));
+            $placeholders = implode(', ', array_fill(0, count($data), '?'));
+            $sql = "INSERT INTO $table ($columns) VALUES ($placeholders)";
+            
+            try {
+                // Prepara la consulta SQL
+                $stmt = $this->conn->prepare($sql);
+    
+                // Ejecuta la consulta con los valores de los datos
+                $result = $stmt->execute(array_values($data));
+    
+                // Verifica si la inserción fue exitosa
+                if ($result) {
+                    // Retorna el ID del último registro insertado
+                    $result = $this->conn->lastInsertId();
+                }
+            } catch(PDOException $e) {
+                // Manejo de errores (puedes personalizar según tus necesidades)
+                echo "Error: " . $e->getMessage();
+            }
+        }
+        
+        return $result;
+    }
+
+    function userEnrolled($idCourse,$idUser)
+    {
+        $result = false;
+        $sql = "SELECT * FROM UserCourse WHERE idCourse = :idC AND idUser = :idU";
+        try
+        {
+            $idC = intval($idCourse);
+            $course = $this->conn->prepare($sql);
+            $course->execute([":idC"=> $idC ,":idU" => $idUser]);
+            if($course->rowCount()==1){
+                
+                $result = true;
+            }
+        }catch(PDOException $e)
+        {
+            echo $e;
+            $result=false;
+        }
+
+        return $result;
+    }
+
+    function updateCourseLikesDislikes($currLikes,$idCourse,$type,$sum)
+    {
+        $sql = "UPDATE Courses SET $type = :likes WHERE idCourse = :id";
+        try{
+            $plus = (int)$currLikes+$sum;
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute([":likes"=>$plus,":id"=>(int)$idCourse]);
+        }catch(PDOExecption $e){
+            return false;
+        }
+        return $usuari->rowCount()==1; 
+    }
+
+    function updateUserCourseLikeDislike($type,$value,$idUser,$idCourse){ 
+        $sql = "UPDATE userCourse SET $type = :likes WHERE idCourse = :idC AND idUser = :idU";
+        try{
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute([":likes"=>$value,":idC"=>(int)$idCourse,":idU"=>$idUser]);
+        }catch(PDOExecption $e){
+            return false;
+        }
+        return $usuari->rowCount()==1;
+    }
+
+    function selectUserCourseLikeDislike($idCourse,$idUser,$type)
+    {
+        $result = false;
+        $sql = "SELECT * FROM userCourse WHERE idCourse = :idC AND idUser = :idU";
+        try
+        {
+            $course = $this->conn->prepare($sql);
+            $course->execute([":idC"=>(int)$idCourse,":idU"=>$idUser]);
+            if($course->rowCount()==1){
+                 
+                $userCourse = $course->fetch(PDO::FETCH_ASSOC);
+                if($userCourse[$type])
+                {
+                    $result = true;
+                }       
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
+
+    function getMorseLikedCourses($limit = null)
+    {
+        $result = false;
+        $sql = $limit == null ? "SELECT * FROM courses ORDER BY likes DESC" : "SELECT * FROM courses ORDER BY likes DESC limit $limit";
+        
+        try
+        {
+            $course = $this->conn->prepare($sql);
+            $course->execute();
+            if($course->rowCount()>0){
+                 
+                $result = $course->fetchAll(PDO::FETCH_ASSOC);
+                
+                       
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
+
+    function getCoursesBySearch($search)
+    {
+        $result = false;
+        $sql = "SELECT * FROM courses WHERE LOWER(title) LIKE :search OR LOWER(description) LIKE :search OR LOWER(tags) LIKE :search" ;
+        $search = '%' . strtolower($search) . '%'; // Agrega los porcentajes y convierte a minúsculas
+        
+        try
+        {
+            $course = $this->conn->prepare($sql);
+            $course->execute([":search"=>$search]);
+            if($course->rowCount()>0){
+                 
+                $result = $course->fetchAll(PDO::FETCH_ASSOC);
+                
+                       
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
+
+    
 }
    
