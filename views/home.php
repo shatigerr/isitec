@@ -35,11 +35,11 @@ if (!isset($_COOKIE["PHPSESSID"])) {
 
         <section class="section_main_info">
             <header class="section_main_info_header">
-                <form action="#" class="section_main_info_form">
+                <form method="post" action="/views/allCourses.php" class="section_main_info_form">
                     <div class="i_container">
                         <i class="fa-solid fa-magnifying-glass fa-sm"></i>
                     </div>
-                    <input type="text" placeholder="Search for a course!!">
+                    <input name="search" type="text" placeholder="Search for a course!!">
                 </form>
 
                 <p class="p-date"><?=date("d M Y, l")?></p>
@@ -49,7 +49,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
                 <div class="section_main_info_card_div">
                     <h2>Welcome <?= $_SESSION["username"] ?></h2>
                     <p>Search any type of Courses and learn where and when you want with flexible online learning platforms. Explore a wide range of subjects, available at your convenience. Start your learning journey today!</p>
-                    <button class="primary">Start now</button>
+                    <a href="/views/allCourses.php"><button class="primary">Start now</button></a>
                 </div>
                 <div class="section_main_info_card_div">
                     <img src="/img/chica-en-ordenador-unscreen.gif" alt="">
@@ -58,7 +58,7 @@ if (!isset($_COOKIE["PHPSESSID"])) {
             <section class="section_main_info_new_courses">
                 <header>
                     <h4>New Courses</h4>
-                    <a href="#">View All</a>
+                    <a class="viewAll" href="/views/allCourses.php">View All</a>
                 </header>
 
                 <section>

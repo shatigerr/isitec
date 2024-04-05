@@ -82,7 +82,7 @@
             <footer class="modal-container-footer">
                 <form action="<?=$_SERVER['PHP_SELF']; ?>" method="POST">
                     <button name="btDecline" class="button is-ghost">Decline</button>
-                    <button name="btAccept" class="button is-primary">Accept</button>
+                    <button type="submit" name="btAccept" class="button is-primary">Accept</button>
                     <input name="data" type="hidden" value='<?= $_GET["mail"]. "#" . $_GET["code"] ?>' />
                 </form>
             </footer>

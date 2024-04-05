@@ -113,7 +113,7 @@ function activateAccount($mail, $hash)
     global $db;
     $results = $db->getUserDataByuserOrMail($mail);
 
-    if ($results["activationDate"] > date('Y-m-j H:i:s') && $results["activationCode"] == $hash) {
+    if ($results["activationDate"] < date('Y-m-j H:i:s') && $results["activationCode"] == $hash) {
         $db->updateActiveStatus(1, $results["username"]);
     }
 }
@@ -133,7 +133,7 @@ function updatePassword($email, $password)
     global $db;
 
     $user = $db->getUserDataByuserOrMail($email);
-    if ($user["resetPassExpiry"] > date('Y-m-j H:i:s')) {
+    if ($user["resetPassExpiry"] < date('Y-m-j H:i:s')) {
 
         $passwd = password_hash($password, PASSWORD_DEFAULT);
         $db->updatePassword($email, $passwd);

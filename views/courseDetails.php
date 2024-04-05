@@ -20,11 +20,15 @@
                 die();
         }elseif(isset($_POST["fav"]))
         {
-
+            $idCourse = filter_input(INPUT_POST,"fav",FILTER_SANITIZE_STRING);
+            getFavouriteById($_SESSION["id"],$idCourse)
+                ?   deleteFavouriteCourse($_SESSION["id"],$idCourse)
+                :   insertFavouriteCourse($_SESSION["id"],$idCourse);
+            header("Location:/views/courseDetails.php?id=$idCourse");
         }else{
             insertUserCourse($_SESSION["id"],$_POST["idCourse"]);
+            header("Location:/views/courseDetails.php?id=$_POST[idCourse]");
         }
-        header("Location:/views/courseDetails.php?id=$_POST[idCourse]");
     }elseif($_SERVER["REQUEST_METHOD"] == "GET"){
         $id = $_GET["id"];
         if(userEnrolled($_SESSION["id"],$id))

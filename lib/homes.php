@@ -13,15 +13,19 @@
         global $db;
         $courses = $id == null ? $db->getCourses(3) : $db->getCourseByAuthor($id);
         $html="";
-        foreach($courses as $item){
-            $html .=    "<div class='card'>";
-            $html .=    "<div class='card-header'><img src='". "$item[course_image]" . "' alt='"."$item[title]"."'></div>";
-            $html .=    "<div class='card-content'>";
-            $html .=    "<div><h3 class='card-title'>"."$item[title]"."</h3><p class='card-description truncate'>"."$item[description]"."</p></div>";
-            $html .=    $id == null ?"<div><p class='card-date'>"."$item[publicationDate]"."</p> <a href='"."/views/courseDetails.php?id=$item[idCourse]"."'><button class='primary'>Ver más</button></a></div>" :"<div><p class='card-date'>"."$item[publicationDate]"."</p> <a href='"."/views/myCourseDetails.php?id=$item[idCourse]"."'><button class='primary'>Ver más</button></a></div>";
-            $html .=    "</div></div>";
+        if($courses)
+        {
+            foreach($courses as $item){
+                $html .=    "<div class='card'>";
+                $html .=    "<div class='card-header'><img src='". "$item[course_image]" . "' alt='"."$item[title]"."'></div>";
+                $html .=    "<div class='card-content'>";
+                $html .=    "<div><h3 class='card-title'>"."$item[title]"."</h3><p class='card-description truncate'>"."$item[description]"."</p></div>";
+                $html .=    $id == null ?"<div><p class='card-date'>"."$item[publicationDate]"."</p> <a href='"."/views/courseDetails.php?id=$item[idCourse]"."'><button class='primary'>Ver más</button></a></div>" :"<div><p class='card-date'>"."$item[publicationDate]"."</p> <a href='"."/views/myCourseDetails.php?id=$item[idCourse]"."'><button class='primary'>Ver más</button></a></div>";
+                $html .=    "</div></div>";
+            }
+    
         }
-
+        
         return $html;
     }
 
@@ -76,7 +80,7 @@
             };
         }
         $html .= "</div>";
-        $html .= "<div class='course_content'><div class='description'><h4>Description</h4><p>"."$temp[description]"."</p></div><form method='POST' class='options'><button id='add' class='primary'>Enroll</button><button type='button' class='secondary'><i class='fa-solid fa-heart-circle-plus'></i></button><input name='idCourse' type='hidden' value='".$id."'></form></div></section>";
+        $html .= "<div class='course_content'><div class='description'><h4>Description</h4><p>"."$temp[description]"."</p></div><div class='form_container'><form method='POST' class='options'><button id='add' class='primary'>Enroll</button><input name='idCourse' type='hidden' value='".$id."'></form><form method='POST'><button type='submit' class='secondary'><i class='fa-solid fa-heart-circle-plus'></i></button><input name='fav' type='hidden' value='".$id."'></form></div></div></section>";
         $html .= "<section class='videos'><h2>Course videos</h2><div>";
         if($res[0]["name"] != null){
 
@@ -125,6 +129,12 @@
         $html .= "</div></section>";
 
         return $html;
+    }
+
+    function updateFavourite($idUser,$idCourse,$value){
+        global $db;
+
+        $db->updateUserCourseLikeDislike("favourite",$value,$idUser,$idCourse);
     }
 
     function getVideoCourse($idCourse,$id)
@@ -213,14 +223,20 @@
         global $db;
 
         $res = $db->getCourseByUserEnrolled($id);
-        $html ="<section>";
-        foreach ($res as $key => $course) {
-            $courseAndVideos = $db->getCourseById($course["idCourse"],2);
-            $title = $courseAndVideos[0]["title"];
-            $totalVideos = count($courseAndVideos);
-            $totalVideosWatched = $db->getCountVideosWatched($course["idCourse"],$id);
-            $ptg = ($totalVideosWatched/$totalVideos)*100;
-            $html .= "<div class='card_container'><progress max='100' value=".$ptg."></progress><a href='/views/courseDetails.php?id=".$course["idCourse"]."' class='progress_card'><div class='title'><h5>$title</h5></div><div class='progress'><p>".$totalVideosWatched."/".$totalVideos."</p></div></a></div>";
+        if($res)
+        {
+            $html ="<section>";
+
+            foreach ($res as $key => $course) {
+                $courseAndVideos = $db->getCourseById($course["idCourse"],2);
+                $title = $courseAndVideos[0]["title"];
+                $totalVideos = count($courseAndVideos);
+                $totalVideosWatched = $db->getCountVideosWatched($course["idCourse"],$id);
+                $ptg = ($totalVideosWatched/$totalVideos)*100;
+                $html .= "<div class='card_container'><progress max='100' value=".$ptg."></progress><a href='/views/courseDetails.php?id=".$course["idCourse"]."' class='progress_card'><div class='title'><h5>$title</h5></div><div class='progress'><p>".$totalVideosWatched."/".$totalVideos."</p></div></a></div>";
+            }
+        }else{
+            $html = "<p class='p'>You are not enrolled to any course</p>";
         }
 
         return $html;
@@ -234,7 +250,7 @@
         foreach($res as $item)
         {
             $html .= "<div class='section_main_info_card'><div class='section_main_info_card_div'>";
-            $html.= "<h2>".$item["title"]."</h2><p>".$item["description"]."</p><a href='/views/courseDetails.php?id=".$item["idCourse"]."'><button class='primary'>Details</button></a></div>";
+            $html.= "<h2>".$item["title"]."</h2><p class='truncate'>".$item["description"]."</p><a href='/views/courseDetails.php?id=".$item["idCourse"]."'><button class='primary'>Details</button></a></div>";
             $html .= "<div class='section_main_info_card_div'><img src='".$item["course_image"]."' alt='".$item["title"]."'></div>";    
             $html .= "</div>";
         }
@@ -263,32 +279,36 @@
 
         $res = $db->getCourseByUserEnrolled($id);
         $html ="";
-        foreach($res as $value) {
-            
-            $courses = $db->getCourseById($value["idCourse"]);
-            foreach($courses as $course){
-                if($search)
-                {
-                    if((str_contains($course["title"],$search) || str_contains($course["description"],$search) || str_contains($course["tags"],$search)))
-                    {
+        if($res)
+        {
 
+            foreach($res as $value) {
+                
+                $courses = $db->getCourseById($value["idCourse"]);
+                foreach($courses as $course){
+                    if($search)
+                    {
+                        if((str_contains($course["title"],$search) || str_contains($course["description"],$search) || str_contains($course["tags"],$search)))
+                        {
+    
+                            $html .= "<div class='card'><div class='card-header'><img src='".$course["course_image"]."' alt='".$course["title"]."'></div>";
+                            $html .= "<div class='card-content'><div><h3 class='card-title'>".$course["title"]."</h3><p class='card-description truncate'>".$course["description"]."</p></div>";
+                            $html .= "<div><p class='card-date'>".$course["publicationDate"]."</p> <a href='/views/courseDetails.php?id=".$course["idCourse"]."'><button class='primary'>Details</button></a></div></div></div>";
+                        }
+                    }else{
                         $html .= "<div class='card'><div class='card-header'><img src='".$course["course_image"]."' alt='".$course["title"]."'></div>";
                         $html .= "<div class='card-content'><div><h3 class='card-title'>".$course["title"]."</h3><p class='card-description truncate'>".$course["description"]."</p></div>";
                         $html .= "<div><p class='card-date'>".$course["publicationDate"]."</p> <a href='/views/courseDetails.php?id=".$course["idCourse"]."'><button class='primary'>Details</button></a></div></div></div>";
                     }
-                }else{
-                    $html .= "<div class='card'><div class='card-header'><img src='".$course["course_image"]."' alt='".$course["title"]."'></div>";
-                    $html .= "<div class='card-content'><div><h3 class='card-title'>".$course["title"]."</h3><p class='card-description truncate'>".$course["description"]."</p></div>";
-                    $html .= "<div><p class='card-date'>".$course["publicationDate"]."</p> <a href='/views/courseDetails.php?id=".$course["idCourse"]."'><button class='primary'>Details</button></a></div></div></div>";
                 }
+    
             }
-
-            if($html == "")
-            {
-                $html = "<p class='no_course'>You are not enrolled in a course with <b>$search</b></p>";
-            }
-
         }
+
+        if($html == "")
+            {
+                $html = "<p class='no_course'>You are not enrolled in courses</p>";
+            }
 
         return $html;
 
@@ -314,3 +334,66 @@
 
         return $html;
     }
+
+    function getFavouriteById($idUser,$idCourse)
+    {
+        global $db;
+
+        return $db->getFavouriteById($idUser,$idCourse);
+    }
+
+    function insertFavouriteCourse($idUser,$idCourse)
+    {
+        global $db;
+        
+        $data = ["idUser" =>$idUser,"idCourse" =>$idCourse];
+        $db->insertOne("favouriteCourses",$data);
+    }
+
+    function deleteFavouriteCourse($idUser,$idCourse)
+    {
+        global $db;
+        $db->deleteFavouriteCourse($idUser,$idCourse);
+    }
+
+    function getFavouriteCourses($id,$search = null)
+    {
+        global $db;
+
+        $res = $db->getFavouriteCoursess($id);
+        $html ="";
+        if($res)
+        {
+
+            foreach($res as $value) {
+                
+                $courses = $db->getCourseById($value["idCourse"]);
+                foreach($courses as $course){
+                    if($search)
+                    {
+                        if((str_contains($course["title"],$search) || str_contains($course["description"],$search) || str_contains($course["tags"],$search)))
+                        {
+    
+                            $html .= "<div class='card'><div class='card-header'><img src='".$course["course_image"]."' alt='".$course["title"]."'></div>";
+                            $html .= "<div class='card-content'><div><h3 class='card-title'>".$course["title"]."</h3><p class='card-description truncate'>".$course["description"]."</p></div>";
+                            $html .= "<div><p class='card-date'>".$course["publicationDate"]."</p> <a href='/views/courseDetails.php?id=".$course["idCourse"]."'><button class='primary'>Details</button></a></div></div></div>";
+                        }
+                    }else{
+                        $html .= "<div class='card'><div class='card-header'><img src='".$course["course_image"]."' alt='".$course["title"]."'></div>";
+                        $html .= "<div class='card-content'><div><h3 class='card-title'>".$course["title"]."</h3><p class='card-description truncate'>".$course["description"]."</p></div>";
+                        $html .= "<div><p class='card-date'>".$course["publicationDate"]."</p> <a href='/views/courseDetails.php?id=".$course["idCourse"]."'><button class='primary'>Details</button></a></div></div></div>";
+                    }
+                }
+    
+            }
+        }
+
+        if($html == "")
+            {
+                $html = "<p class='no_course'>You are not enrolled in courses</p>";
+            }
+
+        return $html;
+
+    }
+

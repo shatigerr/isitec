@@ -16,6 +16,13 @@
 
 }
 
+.viewAll{
+    text-decoration: none;
+}
+
+.p{
+    text-align: center;
+}
 
 .section_container_profile {
     width: 25%;

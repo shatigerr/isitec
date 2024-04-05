@@ -403,7 +403,7 @@ class DB{
 
     function updateCourseLikesDislikes($currLikes,$idCourse,$type,$sum)
     {
-        $sql = "UPDATE Courses SET $type = :likes WHERE idCourse = :id";
+        $sql = "UPDATE courses SET $type = :likes WHERE idCourse = :id";
         try{
             $plus = (int)$currLikes+$sum;
             $usuari = $this->conn->prepare($sql);
@@ -496,6 +496,67 @@ class DB{
         return $result;
     }
 
+    function deleteFavouriteCourse($idUser,$idCourse)
+    {
+        $result = false;
+        
+        // Concatenamos los nombres de tabla y columna en la consulta SQL
+        $sql = "DELETE FROM favouriteCourses WHERE idUser = :idU AND idCourse = :idC";
+        
+        try {
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([":idU" => $idUser,"idC"=>$idCourse]);
+            
+            if ($stmt->rowCount() == 1) {
+                $result = true;
+            }
+        } catch (PDOException $e) {
+            echo "$e";
+            $result = false;
+        }
+
+        return $result;
+    }
+
+    function getFavouriteById($idUser,$idCourse)
+    {
+        $result = false;
+        $sql = "SELECT * FROM favouriteCourses WHERE idCourse = :idC AND idUser = :idU";
+        try
+        {
+            $course = $this->conn->prepare($sql);
+            $course->execute([":idC"=>$idCourse,":idU"=>$idUser]);
+            
+            $result = $course->rowCount()==1;
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
+
+        return $result;
+    }
+    function getFavouriteCoursess($id,$limit = null)
+    {
+        $result=false;
+        $sql = $limit != null ? "SELECT * FROM favouriteCourses WHERE idUser = :id LIMIT 4" : "SELECT * FROM favouriteCourses WHERE idUser = :id" ;
+        try
+        {
+            
+            $usuari = $this->conn->prepare($sql);
+            $usuari->execute(["id"=>$id]);
+            if($usuari->rowCount()>0 ){
+                 
+                $result = $usuari->fetchAll(PDO::FETCH_ASSOC);
+                
+            }
+        }catch(PDOException $e)
+        {
+            $result=false;
+        }
     
+        return $result;
+    }
 }
+
+
    

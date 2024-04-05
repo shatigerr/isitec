@@ -236,6 +236,10 @@
 
 }
 
+.form_container{
+    width: 45%;
+}
+
 @keyframes dialogAnim {
     0% {
       opacity: 0;
