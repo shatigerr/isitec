@@ -21,13 +21,12 @@
     <script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="/js/videoEnded.js"></script>
-    <title>Document</title>
+    <title>Course video!!</title>
 </head>
 <body>
     <main>
+        <?php include("../components/sidebar.php") ?>
         <?= getVideoCourse($_GET["idC"],$_GET["idV"]) ?>
-        
-
     </main>
 </body>
 </html>

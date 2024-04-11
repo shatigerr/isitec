@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/general.css">
     <script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>My courses!!</title>
 </head>
 <body>
     <main>

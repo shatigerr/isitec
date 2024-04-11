@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="../css/resetPassword.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/b8504978d2.js" crossorigin="anonymous"></script>
-    <title>Document</title>
+    <title>Reset Password!!</title>
 </head>
 
 <body>

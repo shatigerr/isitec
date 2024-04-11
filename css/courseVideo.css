@@ -11,8 +11,7 @@
 
 .video h2{
     margin-left: 2.5em;
-    margin-bottom: 15px;
-    
+    margin-bottom: 15px;  
 }
 .video video{
     margin-left: auto;
@@ -49,5 +48,22 @@
         width: 100%;
         flex-direction: row;
         justify-content: space-between;
+    }
+}
+
+@media (max-width: 760px) {
+
+    .video {
+        width: 100vw;
+        height: 55vh;
+    }   
+
+    .video h2{
+        margin-left: 1em;
+        margin-bottom: 15px;  
+    }    
+
+    .videos {
+        width: 100vw;
     }
 }
